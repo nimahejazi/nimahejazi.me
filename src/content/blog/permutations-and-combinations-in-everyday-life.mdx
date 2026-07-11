@@ -28,9 +28,9 @@ For the first seat, we have 10 options (0 to 9). For the second and third
 seats, we have the same number of options. To find the total number of
 possible combinations, we simply multiply the number of options for each seat:
 
-$$9 \cdot 9 \cdot 9 \cdot 9 = 729$$
+$$10 \cdot 10 \cdot 10 = 1000$$
 
-That is equivalent to 9 cubed. So, whenever we have a certain number of
+That is equivalent to 10 cubed. So, whenever we have a certain number of
 options to be placed for a specific number of seats, all we need to do is
 raise the number of options to the power of the number of seats:
 
@@ -105,7 +105,7 @@ the **combination** formula. This problem appears similar, but we need to find
 a way to eliminate all arrangements that have similar letters. Here's the
 formula:
 
-$$\frac{k!}{k!(n-k)!}$$
+$$\frac{n!}{k!(n-k)!}$$
 
 As you can see, this is quite similar to the permutation formula. Simply
 multiply $k!$ to the denominator. In our example, if the order of the letters

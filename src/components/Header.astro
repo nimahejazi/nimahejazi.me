@@ -1,0 +1,44 @@
+---
+import { profile } from "../data/profile";
+import DarkModeToggle from "./DarkModeToggle.astro";
+---
+
+<header class="border-b border-cream-300 dark:border-white/10">
+  <div
+    class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 lg:px-10"
+  >
+    <a
+      href="/"
+      class="inline-flex items-baseline gap-1 font-medium tracking-tight"
+    >
+      {profile.wordmark}
+    </a>
+
+    <div class="flex items-center gap-2 sm:gap-5">
+      <nav class="hidden items-center gap-6 md:flex">
+        <a
+          href="#about"
+          class="text-sm font-medium text-cream-700 hover:text-cream-900 dark:text-cream-500 dark:hover:text-white"
+          >About</a
+        >
+        <a
+          href="#experience"
+          class="text-sm font-medium text-cream-700 hover:text-cream-900 dark:text-cream-500 dark:hover:text-white"
+          >Experience</a
+        >
+        <a
+          href="#projects"
+          class="text-sm font-medium text-cream-700 hover:text-cream-900 dark:text-cream-500 dark:hover:text-white"
+          >Projects</a
+        >
+        <a
+          href="#contact"
+          class="text-sm font-medium text-cream-700 hover:text-cream-900 dark:text-cream-500 dark:hover:text-white"
+          >Contact</a
+        >
+      </nav>
+
+      <DarkModeToggle />
+    </div>
+  </div>
+</header>

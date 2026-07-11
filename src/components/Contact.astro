@@ -1,0 +1,107 @@
+---
+import { profile } from "../data/profile";
+---
+
+<section id="contact" class="py-20">
+  <div class="grid gap-12 lg:grid-cols-12">
+    <div class="lg:col-span-4">
+      <span
+        class="text-[11px] font-semibold uppercase tracking-[0.08em] text-cream-600 dark:text-cream-500"
+        >05 · Contact</span
+      >
+      <h2
+        class="mt-3 text-3xl font-normal leading-tight tracking-tight md:text-4xl"
+      >
+        Let's build something quiet and useful.
+      </h2>
+      <p class="mt-5 text-sm/relaxed text-cream-700 dark:text-cream-500">
+        Open to full-time, contract, and collaboration. Usually reply within a day.
+      </p>
+      <a
+        href={`mailto:${profile.contact.email}`}
+        class="mt-6 inline-flex h-10 items-center gap-2 rounded-md bg-brand-500 px-5 text-sm font-medium text-white hover:bg-brand-600"
+      >
+        {profile.contact.email}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-4"
+        >
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+
+    <div class="lg:col-span-8">
+      <dl
+        class="grid grid-cols-1 divide-y divide-cream-300 rounded-xl border border-cream-300 bg-white sm:grid-cols-2 sm:divide-y-0 sm:divide-x dark:divide-white/10 dark:border-white/10 dark:bg-white/5"
+      >
+        <div class="p-6">
+          <dt
+            class="text-[11px] font-semibold uppercase tracking-[0.08em] text-cream-600 dark:text-cream-500"
+            >Location</dt
+          >
+          <dd class="mt-2 font-medium">{profile.contact.location}</dd>
+        </div>
+        <div class="p-6">
+          <dt
+            class="text-[11px] font-semibold uppercase tracking-[0.08em] text-cream-600 dark:text-cream-500"
+            >Email</dt
+          >
+          <dd class="mt-2">
+            <a
+              href={`mailto:${profile.contact.email}`}
+              class="font-mono text-sm text-cream-900 underline decoration-cream-400 underline-offset-4 hover:decoration-cream-900 dark:text-white dark:decoration-white/30 dark:hover:decoration-white"
+              >{profile.contact.email}</a
+            >
+          </dd>
+        </div>
+        {
+          profile.contact.website && (
+            <div class="border-t border-cream-300 p-6 dark:border-white/10">
+              <dt class="text-[11px] font-semibold uppercase tracking-[0.08em] text-cream-600 dark:text-cream-500">
+                Website
+              </dt>
+              <dd class="mt-2">
+                <a
+                  href={profile.contact.website}
+                  class="font-mono text-sm text-cream-900 underline decoration-cream-400 underline-offset-4 hover:decoration-cream-900 dark:text-white dark:decoration-white/30 dark:hover:decoration-white"
+                >
+                  {profile.contact.website.replace(/^https?:\/\//, "")}
+                </a>
+              </dd>
+            </div>
+          )
+        }
+        <div class="border-t border-cream-300 p-6 dark:border-white/10">
+          <dt
+            class="text-[11px] font-semibold uppercase tracking-[0.08em] text-cream-600 dark:text-cream-500"
+            >Social</dt
+          >
+          <dd class="mt-2">
+            <ul class="flex flex-col gap-2">
+              {
+                profile.socials.map((social) => (
+                  <li>
+                    <a
+                      href={social.href}
+                      class="font-mono text-sm text-cream-900 underline decoration-cream-400 underline-offset-4 hover:decoration-cream-900 dark:text-white dark:decoration-white/30 dark:hover:decoration-white"
+                    >
+                      {social.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>

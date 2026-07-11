@@ -1,13 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/global.css";
+import { profile } from "../data/profile";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Experience from "../components/Experience.astro";
+import Education from "../components/Education.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<BaseLayout title="Nima Hejazi">
-  <main class="mx-auto max-w-6xl px-5 py-20 lg:px-10">
-    <h1 class="text-4xl font-normal tracking-tight">Scaffold OK</h1>
-    <p class="mt-4 text-cream-700 dark:text-cream-500">
-      Astro + Tailwind v4 base is wired up.
-    </p>
+<BaseLayout title={profile.name} description={profile.pitch}>
+  <Header />
+  <main class="mx-auto max-w-6xl px-5 lg:px-10">
+    <Hero />
+    <About />
+    <Experience />
+    <Education />
+    <Projects />
+    <Contact />
   </main>
+  <Footer />
 </BaseLayout>

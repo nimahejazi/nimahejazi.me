@@ -1,0 +1,70 @@
+---
+import { profile } from "../data/profile";
+
+const skillTint: Record<string, string> = {
+  "Thinking · Architecture": "bg-peach/25",
+  "Grep · Audits": "bg-mint/25",
+  "Read · Research": "bg-azure/25",
+  "Edit · Refactor": "bg-lavender/25",
+  "Done · Ship": "bg-gold/25",
+};
+---
+
+<section
+  id="about"
+  class="border-b border-cream-300 py-20 dark:border-white/10"
+>
+  <div class="grid gap-12 lg:grid-cols-12">
+    <div class="lg:col-span-4">
+      <span
+        class="text-[11px] font-semibold uppercase tracking-[0.08em] text-cream-600 dark:text-cream-500"
+        >01 · About</span
+      >
+      <h2
+        class="mt-3 text-3xl font-normal leading-tight tracking-tight md:text-4xl"
+      >
+        Calm code, clear systems.
+      </h2>
+      <p class="mt-5 text-sm/relaxed text-cream-700 dark:text-cream-500">
+        {profile.about}
+      </p>
+    </div>
+
+    <div class="min-w-0 lg:col-span-8">
+      <div
+        class="overflow-hidden rounded-xl border border-cream-300 bg-white dark:border-white/10 dark:bg-white/5"
+      >
+        <div
+          class="flex items-center gap-2 border-b border-cream-300 px-4 py-3 dark:border-white/10"
+        >
+          <span class="size-2.5 rounded-full bg-peach"></span>
+          <span class="size-2.5 rounded-full bg-gold"></span>
+          <span class="size-2.5 rounded-full bg-mint"></span>
+          <span
+            class="ml-3 font-mono text-xs text-cream-600 dark:text-cream-500"
+            >~/about/stack.ts</span
+          >
+        </div>
+        <pre
+          class="overflow-x-auto px-5 py-5 font-mono text-[13px] leading-relaxed text-cream-900 dark:text-cream-200"
+        ><span class="text-cream-600 dark:text-cream-500">// stack</span>
+<span class="text-gold">const</span> stack = {`{`}
+  languages: [{profile.stack.languages.map((l) => `"${l}"`).join(", ")}],
+  frontend:  [{profile.stack.frontend.map((l) => `"${l}"`).join(", ")}],
+  backend:   [{profile.stack.backend.map((l) => `"${l}"`).join(", ")}],
+  tooling:   [{profile.stack.tooling.map((l) => `"${l}"`).join(", ")}],
+{`}`};</pre>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        {
+          profile.skills.map((skill) => (
+            <span class={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-tight text-cream-900 dark:text-cream-100 ${skillTint[skill] ?? "bg-cream-300/25"}`}>
+              {skill}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

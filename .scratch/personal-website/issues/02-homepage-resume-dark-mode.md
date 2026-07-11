@@ -4,11 +4,15 @@
 
 **Blocked by:** 01 — Scaffold Astro + Tailwind v4
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] Typed content data module holds identity, availability, experience, education, projects, contact, socials
-- [ ] All six resume sections render from that data on the homepage
-- [ ] Hero shows name, role, pitch, availability signal, and placeholder portrait
-- [ ] Contact section shows email (mailto) and LinkedIn + GitHub only; no CV button
-- [ ] Dark-mode toggle: system-aware first paint, persisted choice, no flash
-- [ ] Visual style matches the template's cream/brand palette and card components
+- [x] Typed content data module holds identity, availability, experience, education, projects, contact, socials
+- [x] All six resume sections render from that data on the homepage
+- [x] Hero shows name, role, pitch, availability signal, and placeholder portrait
+- [x] Contact section shows email (mailto) and LinkedIn + GitHub only; no CV button
+- [x] Dark-mode toggle: system-aware first paint, persisted choice, no flash
+- [x] Visual style matches the template's cream/brand palette and card components
+
+## Answer
+
+Built `src/data/profile.ts` (typed `Profile` + sub-interfaces) as the single content source. Added section components (Header, Hero, About, Experience, Education, Projects, Contact, Footer) + `DarkModeToggle.astro` (toggles `dark` on `<html>`, persists to localStorage; no-flash script already in BaseLayout). LinkedIn + GitHub only, mailto email, no CV button. Placeholder portrait at `/portrait-placeholder.svg`. Dynamic Tailwind classes in skill pills replaced with a static tint map so v4's scanner picks them up. Build + `astro check` pass; all six sections present in `dist/index.html`.

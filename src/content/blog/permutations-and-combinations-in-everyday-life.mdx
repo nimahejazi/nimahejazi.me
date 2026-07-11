@@ -1,0 +1,118 @@
+---
+title: "Permutations and Combinations in Everyday Life"
+date: 2025-08-15
+excerpt: "A plain-English tour of permutations and combinations, and how counting with and without order shows up in locks, outfits, and words."
+tags: ["math", "combinatorics"]
+---
+
+People who know me are aware of my deep admiration for mathematics. As
+famously said, mathematics brings order to chaos. It's only through
+mathematics that we can comprehend the phenomena around us and make life
+easier.
+
+Permutations and combinations are among the most practical topics in
+mathematics. They help us to find out the number of ways a set of shirts and
+pants can be worn or calculating the car plates that can be created using
+three letters and three digits. Let's delve deeper into it.
+
+Generally, there are three distinct types of problems that we can solve using
+this branch of mathematics. The first type of problem involves having several
+placeholders (seats, for instance) available and a certain number of options
+that can be placed in each one of them. The number of options for each seat is
+the same. For example, we have a lock combination that consists of three
+digits, each ranging from 0 to 9.
+
+![A three-digit lock combination](/images/permutations-lock.jpg)
+
+For the first seat, we have 10 options (0 to 9). For the second and third
+seats, we have the same number of options. To find the total number of
+possible combinations, we simply multiply the number of options for each seat:
+
+$$9 \cdot 9 \cdot 9 \cdot 9 = 729$$
+
+That is equivalent to 9 cubed. So, whenever we have a certain number of
+options to be placed for a specific number of seats, all we need to do is
+raise the number of options to the power of the number of seats:
+
+$$\text{options}^{\text{seats}}$$
+
+Note that the number of options must be the same for each seat for this
+formula to work. If not, we need to multiply the number of options available
+for each specific seat. For instance, if we have three shirts, four pants, and
+two shoes, how many ways can we wear them? In this case, we multiply 3, 4, and
+2:
+
+$$3 \cdot 2 \cdot 4 = 24$$
+
+In mathematics, this is called **The Rule of Products**.
+
+Now, let's make it more intriguing. What if we have options that we exhaust as
+we fill the seats? This scenario is similar to our previous example, except
+that we don't have all options available for each seat; we use them up as we
+fill the seats. Let's illustrate this with an example. Imagine we have five
+letters, and we want to determine the number of words (with or without
+meaning) we can create.
+
+![Arranging five letters into seats](/images/permutations-letters.jpg)
+
+This means that for the first seat, we have five options (all the letters).
+However, as we move to the next seat, the number of available words decreases.
+So, for the second seat, we have four options to choose from, and for the last
+seat, only one letter remains:
+
+$$5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120$$
+
+The good news is that the equation can be written much shorter (and in a kind
+of funny form):
+
+$$5! = 120$$
+
+If you're unfamiliar with that, it's called a factorial. Any number multiplied
+by its factorial is equal to the product of that number and one less than the
+previous number, until we reach 1. In mathematical terms, it can be expressed
+as:
+
+$$k! = k \times (k-1) \times \cdots \times 3 \times 2 \times 1$$
+
+Permutations are a type of problem where we have fewer options than available
+seats. For instance, let's consider the previous example. Imagine how many
+three-letter words we can form using the five letters we have. To solve this,
+we can use the permutation formula:
+
+$$5 \cdot 4 \cdot 3 = 60$$
+
+We had to stop at three (our third seat). But is there a way to make it
+shorter? You bet there is:
+
+$$\frac{5 \cdot 4 \cdot 3 \cdot 2 \cdot 1}{2 \cdot 1} = \frac{5!}{2!} = 60$$
+
+In fact, this is the permutation formula:
+
+$$\frac{n!}{(n-k)!}$$
+
+$n$ represents the number of options we have, and $k$ represents the number of
+seats. The factorial expression $(n-k)!$ simply serves as a way to stop at
+the $n-k$th position.
+
+Permutations determine the number of possible arrangements, where the order of
+the arrangement matters. In other words, if we have the set $\{a, b, c\}$,
+then "abc" is an option, as are "acb" and "bac". However, if the order doesn't
+matter, then "abc" and "acb" are considered the same, even though they have
+different orders.
+
+When we want to find all the arrangements and the order doesn't matter, we use
+the **combination** formula. This problem appears similar, but we need to find
+a way to eliminate all arrangements that have similar letters. Here's the
+formula:
+
+$$\frac{k!}{k!(n-k)!}$$
+
+As you can see, this is quite similar to the permutation formula. Simply
+multiply $k!$ to the denominator. In our example, if the order of the letters
+didn't matter, there would be 30 different ways to create a word:
+
+$$\frac{5!}{2!(5-3)!} = \frac{5!}{2! \cdot 2!} = \frac{120}{4} = 30$$
+
+Combinatorics is one of the math branches that has so many applications in day
+to day life. Although it might seem complicated at first, once we have a good
+grasp of how it works, it's very easy to understand.

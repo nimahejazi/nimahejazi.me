@@ -143,5 +143,5 @@ export const profile: Profile = {
     { label: "LinkedIn", href: "https://www.linkedin.com/in/nimahejazi" },
     { label: "GitHub", href: "https://github.com/nimahejazi" },
   ],
-  portrait: "/portrait-placeholder.svg",
+  portrait: "/nima-hejazi-portrait.jpg",
 };

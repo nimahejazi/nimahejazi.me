@@ -1,23 +1,39 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Header from "../../components/Header.astro";
-import "../../styles/global.css";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/global.css";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const tags = new Set<string>();
+  for (const post of posts) {
+    for (const tag of post.data.tags) tags.add(tag);
+  }
+  return [...tags].map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts
+        .filter((p) => p.data.tags.includes(tag))
+        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
 ---
 
-<BaseLayout title="Blog" description="Writing on engineering, math, and code.">
+<BaseLayout title={`${tag} — tags`} description={`Posts tagged ${tag}.`}>
   <Header />
   <main class="mx-auto max-w-6xl px-5 py-20 lg:px-10">
-    <span
-      class="text-[11px] font-semibold uppercase tracking-[0.08em] text-cream-600 dark:text-cream-500"
-      >Blog</span
+    <a
+      href="/blog/tags"
+      class="text-sm font-medium text-cream-700 hover:text-cream-900 dark:text-cream-500 dark:hover:text-white"
+      >← All tags</a
     >
     <h1 class="mt-3 text-4xl font-normal leading-tight tracking-tight md:text-5xl">
-      Writing.
+      <span class="text-brand-500">#</span>{tag}
     </h1>
     <ul class="mt-10 grid gap-4">
       {
@@ -38,18 +54,6 @@ const posts = (await getCollection("blog")).sort(
               <p class="mt-3 text-sm/relaxed text-cream-700 dark:text-cream-500">
                 {post.data.excerpt}
               </p>
-              {post.data.tags.length > 0 && (
-                <div class="mt-4 flex flex-wrap gap-2">
-                  {post.data.tags.map((tag) => (
-                    <a
-                      href={`/blog/tags/${tag}/`}
-                      class="rounded-full bg-cream-200/60 px-2.5 py-1 text-xs font-medium text-cream-700 hover:bg-cream-300/60 dark:bg-white/10 dark:text-cream-300 dark:hover:bg-white/20"
-                    >
-                      {tag}
-                    </a>
-                  ))}
-                </div>
-              )}
             </a>
           </li>
         ))

@@ -70,10 +70,10 @@ export const profile: Profile = {
   headline: "Nima Hejazi",
   pitch:
     "Data analyst and full-stack web developer who turns operational noise " +
-    "into clean pipelines and clear products — from ETL and dashboards to " +
+    "into clean pipelines and clear products, from ETL and dashboards to " +
     "deployed web apps.",
   about:
-    "I build data systems and the web interfaces around them — Python ETL " +
+    "I build data systems and the web interfaces around them: Python ETL " +
     "pipelines, executive dashboards, and responsive applications. Pragmatic, " +
     "accessible by default, and tuned to be pleasant to read at 2am.",
   stack: {
@@ -232,7 +232,7 @@ export const profile: Profile = {
   ],
   projects: [
     {
-      title: "PropertySpot — Property Listing Management Platform",
+      title: "PropertySpot: Property Listing Management Platform",
       tags: ["Laravel", "MySQL", "Stripe", "Docker", "CI/CD"],
       description:
         "Full-stack property listing platform built on Laravel 8.x with MySQL, role-based access control, Stripe payments, and email verification. Containerized with Docker (nginx + php-fpm) and shipped via a Jenkins CI/CD pipeline, with a React-powered interactive UI.",

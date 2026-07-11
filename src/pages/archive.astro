@@ -1,0 +1,36 @@
+---
+import { profile } from "../data/profile";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import "../styles/global.css";
+
+const archived = profile.projects.filter((p) => p.archived);
+---
+
+<BaseLayout title="Archive" description="The full archive of projects.">
+  <Header />
+  <main class="mx-auto max-w-6xl px-5 py-20 lg:px-10">
+    <a
+      href="/"
+      class="text-sm font-medium text-cream-700 hover:text-cream-900 dark:text-cream-500 dark:hover:text-white"
+      >← Back home</a
+    >
+    <h1 class="mt-3 text-4xl font-normal leading-tight tracking-tight md:text-5xl">
+      Archive.
+    </h1>
+    {
+      archived.length > 0 ? (
+        <div class="mt-10 grid gap-4 md:grid-cols-2">
+          {archived.map((project, i) => (
+            <ProjectCard project={project} index={i} />
+          ))}
+        </div>
+      ) : (
+        <p class="mt-10 text-sm/relaxed text-cream-700 dark:text-cream-500">
+          No archived projects yet.
+        </p>
+      )
+    }
+  </main>
+</BaseLayout>

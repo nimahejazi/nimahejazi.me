@@ -22,6 +22,7 @@ export interface ProjectItem {
   tags: string[];
   description: string;
   href?: string;
+  archived?: boolean;
 }
 
 export interface ContactInfo {

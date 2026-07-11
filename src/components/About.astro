@@ -1,12 +1,11 @@
 ---
 import { profile } from "../data/profile";
 
-const skillTint: Record<string, string> = {
-  "Thinking · Architecture": "bg-peach/25",
-  "Grep · Audits": "bg-mint/25",
-  "Read · Research": "bg-azure/25",
-  "Edit · Refactor": "bg-lavender/25",
-  "Done · Ship": "bg-gold/25",
+const groupTint: Record<string, string> = {
+  "Analytics & Statistics": "bg-peach/25",
+  "Engineering & Architecture": "bg-mint/25",
+  "Data & AI": "bg-azure/25",
+  "Business & Communication": "bg-lavender/25",
 };
 ---
 
@@ -56,12 +55,21 @@ const skillTint: Record<string, string> = {
 {`}`};</pre>
       </div>
 
-      <div class="mt-4 flex flex-wrap gap-2">
+      <div class="mt-4 space-y-4">
         {
-          profile.skills.map((skill) => (
-            <span class={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-tight text-cream-900 dark:text-cream-100 ${skillTint[skill] ?? "bg-cream-300/25"}`}>
-              {skill}
-            </span>
+          profile.skills.map((group) => (
+            <div>
+              <h3 class="mb-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-cream-600 dark:text-cream-500">
+                {group.category}
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {group.items.map((skill) => (
+                  <span class={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-tight text-cream-900 dark:text-cream-100 ${groupTint[group.category] ?? "bg-cream-300/25"}`}>
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))
         }
       </div>

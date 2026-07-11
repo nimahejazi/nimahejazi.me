@@ -53,3 +53,7 @@
     }
   }
 }
+
+.prose-custom p + p {
+  margin-top: 1.25rem;
+}

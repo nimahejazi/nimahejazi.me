@@ -1,0 +1,41 @@
+---
+title: "Project Management SaaS"
+date: 2025-03-15
+excerpt: "How I built a project coordination platform with Astro and React."
+tags: ["Astro", "React"]
+externalUrl: "https://example.com"
+---
+
+A short case study on how this project came together — the architecture
+decisions, the math behind the scheduling, and the code that ties it together.
+
+## Approach
+
+The core scheduling problem reduces to a constraint satisfaction task. The
+utilization of a team member is bounded by:
+
+$$
+u = \frac{\sum_{i} h_i}{H_{\text{capacity}}}
+$$
+
+where $h_i$ are assigned hours and $H_{\text{capacity}}$ is the weekly cap.
+
+## Implementation
+
+The reactive UI layer streams updates with a small store:
+
+```ts
+type State = { tasks: Task[]; loaded: boolean };
+
+function reduce(state: State, event: Event): State {
+  switch (event.type) {
+    case "tasks/loaded":
+      return { ...state, tasks: event.tasks, loaded: true };
+    default:
+      return state;
+  }
+}
+```
+
+The detail page itself is MDX, so it inherits the same math and code
+rendering as the blog.

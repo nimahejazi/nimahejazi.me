@@ -23,6 +23,7 @@ export interface ProjectItem {
   description: string;
   href?: string;
   archived?: boolean;
+  slug?: string;
 }
 
 export interface ContactInfo {
@@ -122,6 +123,7 @@ export const profile: Profile = {
         "A robust platform facilitating seamless project coordination and " +
         "lifting the daily UX of busy teams.",
       href: "https://example.com",
+      slug: "project-management-saas",
     },
     {
       title: "Data Tooling",

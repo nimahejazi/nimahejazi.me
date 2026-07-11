@@ -1,0 +1,66 @@
+---
+import { getCollection, render } from "astro:content";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<ArticleLayout
+  title={project.data.title}
+  description={project.data.excerpt}
+  backHref="/#projects"
+  backLabel="← Back to projects"
+>
+  <header slot="header">
+    <h1
+      class="text-4xl font-normal leading-tight tracking-tight md:text-5xl"
+    >
+      {project.data.title}
+    </h1>
+    {
+      project.data.tags.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          {project.data.tags.map((tag) => (
+            <span class="rounded-full bg-cream-200/60 px-2.5 py-1 text-xs font-medium text-cream-700 dark:bg-white/10 dark:text-cream-300">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
+    {
+      project.data.externalUrl && (
+        <a
+          href={project.data.externalUrl}
+          class="mt-4 inline-flex items-center gap-2 font-mono text-xs text-cream-900 underline decoration-cream-400 underline-offset-4 hover:decoration-cream-900 dark:text-white dark:decoration-white/30 dark:hover:decoration-white"
+        >
+          Visit site
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-3.5"
+          >
+            <path d="M7 7h10v10" />
+            <path d="M7 17 17 7" />
+          </svg>
+        </a>
+      )
+    }
+  </header>
+
+  <Content />
+</ArticleLayout>

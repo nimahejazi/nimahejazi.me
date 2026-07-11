@@ -154,9 +154,9 @@ export const profile: Profile = {
     },
   ],
   stats: [
-    { label: "Years", value: "19+" },
-    { label: "Degrees", value: "2" },
-    { label: "Records", value: "8K+" },
+    { label: "Business Analytics · UC Davis", value: "MSBA '26" },
+    { label: "Workflows & tooling", value: "Agentic AI" },
+    { label: "Data & web apps", value: "Full-stack" },
   ],
   experience: [
     {

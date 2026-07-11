@@ -5,6 +5,8 @@ excerpt: "Every business decision is a bet under uncertainty. A look at Type I a
 tags: ["statistics", "business"]
 ---
 
+import AlphaBetaVisualizer from "../../components/AlphaBetaVisualizer";
+
 I have an academic background in business. Generally, statistics play a big role in business decisions. Usually, when executive managers face a strategic decision, they rely on data to make sure they understand the consequences of the outcome.
 
 Statistics play a big role in analyzing data. Often, a business decision boils down to a yes/no question of whether to pursue some opportunity. Suppose that a business owner wants to provide free delivery on all purchases on their website. Suppose also that in order for this service to be profitable, the average shopping bag should be more than \$85.
@@ -26,8 +28,10 @@ But there's another error we can make. There's a chance that we fail to reject t
 
 To calculate the probability of $\beta$ we first need to understand the distributions under $H_0$ and $H_1$. Assuming $H_0$ is true, the sample comes from the same distribution as $H_0$. This makes it harder to mistakenly reject the null hypothesis. However, if $H_0$ is false, depending on where the true mean lies, it might be easier to mistakenly fail to reject the null hypothesis and make a Type II error. This might sound a little abstract, so let's clarify with an illustration.
 
-![Null and alternative distributions, with Beta shaded](/images/alpha-beta-visual.png)
-
 In this illustration, the null hypothesis is shown in dark yellow. Assuming our alternative hypothesis (in dark blue) is true, there's a chance that our data fails to detect the difference, causing us to fail to reject the null hypothesis. That chance is highlighted in blue. The power of a statistical test is the complement of Beta — the chance of not making a Type II error $(1 - \beta)$ — which is known as **statistical power**.
+
+Drag the sliders to see how the two error rates trade off. Moving the critical value $c$ to the right shrinks $\alpha$ but grows $\beta$; increasing the sample size (here, shrinking $\sigma$) pulls the two curves tighter and cuts $\beta$ without inflating $\alpha$.
+
+<AlphaBetaVisualizer client:load />
 
 There are a few parameters that affect Beta. The probability of committing a Type II error depends on five factors: (i) the actual value of the population parameter being tested, (ii) the level of significance selected, (iii) the type of test (one- or two-tailed) used to evaluate the null hypothesis, (iv) the sample standard deviation (also called the standard error), and (v) the sample size (Sharma, *Business Statistics*, 2nd ed.).

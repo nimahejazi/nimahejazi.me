@@ -1,0 +1,71 @@
+---
+title: "Is Your Ad Really Working? A Statistical Approach to Measuring Performance"
+date: 2025-10-04
+excerpt: "Clicks alone don't prove an ad works. A statistical approach: multi-touch attribution, A/B testing, and the cost-profit-ROI math behind ad performance."
+tags: ["statistics", "marketing"]
+---
+
+![A statistical view of ad performance](/images/ad-performance-featured.jpg)
+
+Regardless of the business objectives and goals, what separates a thriving business from a failing one is the customer. Without customers, there would be no lifeline for the business; thus, no matter how brilliant the product or service is, it's doomed to fail. Of course, one way to increase the customer base is by running an advertising campaign. However, determining whether an ad is performing well is not as easy as it sounds. In this article, I'll go over a statistical approach to this issue.
+
+### Last-Click Attribution Problem
+
+The criteria to determine the success of an ad should not merely be based on the number of clicks. Although bringing a customer to a website (or store) might be the ultimate goal of the ads, the customer journey that leads to that goal is usually longer than an instant reaction to an ad.
+
+A customer's journey is a multi-step process starting with awareness, continuing with desire, and finally leading to action. For example, a client might have seen your ad in a magazine without any plan to use your product or service. This could build awareness of your brand and products (awareness). Later, she might see an ad on TV that makes her consider the product (desire). Finally, seeing an ad while browsing social media might prompt her to click on it and purchase the product (action). Attributing all the credit to the social media ad could be misleading and undervalue the awareness-building channels.
+
+To address this issue, companies use Multi-Touch Attribution (MTA) models. There are different techniques to achieve this. Details about these techniques are beyond the scope of this article, but to introduce the reader, some of the common ones are the linear model (equal attribution), time-decay (higher attribution to interactions closer to conversion), and data-driven models (based on historical data).
+
+### A/B Testing
+
+Although an ad could bring a customer to your website who eventually purchases your product or service, this doesn't necessarily mean the ad was the reason for the purchase; the customer could have already decided to buy. To find out if there's a meaningful difference between running the ad and not running it, we need to run an experiment.
+
+To achieve this, we randomly select two groups of visitors (coming from the ad vs. not coming from the ad) and test statistically to determine if there's any significant difference. Random assignment ensures that there's no bias caused by confounding variables.
+
+The difference between the two samples is almost never zero (due to randomness). However, the magnitude of the difference is what sets them apart. To test this, we compare the average purchase of visitors who clicked the ad with the average purchase of visitors who didn't. This is a simple t-test problem. For keen readers, here's the hypothesis and the R code:
+
+$$
+\begin{aligned}
+H_0 &: \pi_t = \pi_c \\
+H_1 &: \pi_t \neq \pi_c
+\end{aligned}
+$$
+
+where $\pi_t$ is the profit from the control group and $\pi_c$ is the profit from the treatment group.
+
+```R
+t.test(pi_t, pi_c, alternative = "two.sided", conf.int = 0.95)
+```
+
+This ensures that the difference we observe is not purely due to chance (the nature of randomness).
+
+If the goal is not product sales but simply bringing visitors, then ad performance (click-through rate) should be compared with a benchmark. This benchmark is usually based on historical data. If historical data is not available, an expert estimate can be used.
+
+### Cost, Profit, and ROI
+
+![Cost and click-through math for ad performance](/images/ad-performance-cost.jpg)
+
+Marketers are usually concerned with the cost and benefit of running ads. If the cost of the ad is not click-based and is instead based on the number of views, then the following formula can be used to determine the true cost of the ad:
+
+$$
+\text{Cost per click} = \frac{\text{Cost per view}}{\text{Click-through rate}}
+$$
+
+We use this formula to adjust the cost based on clicks rather than views.
+
+To calculate the profit from each visitor who came to the website through the ad, we'd use the following formula:
+
+$$
+\text{Profit per visitor} = \frac{\text{Average profit}}{\text{Click-through rate}}
+$$
+
+Of course, calculating profit requires determining the true cost of the product or service. This includes the cost of goods sold (COGS) and other indirect costs, but for the purpose of this article, we'll ignore those.
+
+The final step is to find the return on investment (ROI):
+
+$$
+\text{ROI} = \frac{\text{Profit per visitor}}{\text{Cost per visitor}} - 1
+$$
+
+Although this process quantifies the success (or failure) of an ad campaign, it's important to be aware of other benefits (often less obvious) of the campaign. For example, customers who make a purchase could have longer customer lifetime value (CLV). Brand awareness also plays a crucial role in marketing.

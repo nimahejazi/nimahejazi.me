@@ -4,8 +4,12 @@
 
 **Blocked by:** 01 — Scaffold Astro + Tailwind v4
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] Analytics script injected on all pages
-- [ ] Provider endpoint/key sourced from an environment variable (no secret in source)
-- [ ] Absent/invalid env value degrades gracefully (no broken script)
+- [x] Analytics script injected on all pages
+- [x] Provider endpoint/key sourced from an environment variable (no secret in source)
+- [x] Absent/invalid env value degrades gracefully (no broken script)
+
+## Answer
+
+`BaseLayout` injects a privacy-friendly analytics `<script>` (Plausible/Umami) only when `PUBLIC_ANALYTICS_SRC` is set, reading `PUBLIC_ANALYTICS_SRC` + `PUBLIC_ANALYTICS_DOMAIN` from `import.meta.env`. Added `.env.example` documenting both. Verified: 0 script tags when unset, 1 with correct `src` + `data-domain` when set. `astro check` clean.

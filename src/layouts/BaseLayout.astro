@@ -15,6 +15,9 @@ const {
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image ?? "/og-image.svg", Astro.site);
+
+const analyticsSrc = import.meta.env.PUBLIC_ANALYTICS_SRC;
+const analyticsDomain = import.meta.env.PUBLIC_ANALYTICS_DOMAIN;
 ---
 
 <!doctype html>
@@ -62,6 +65,18 @@ const ogImage = new URL(image ?? "/og-image.svg", Astro.site);
         } catch (_) {}
       })();
     </script>
+
+    <!-- Privacy-friendly analytics (Plausible/Umami) via env; omitted if unset -->
+    {
+      analyticsSrc && (
+        <script
+          is:inline
+          defer
+          src={analyticsSrc}
+          data-domain={analyticsDomain}
+        />
+      )
+    }
   </head>
   <body
     class="min-h-dvh bg-cream-100 text-cream-900 antialiased dark:bg-cream-950 dark:text-cream-200"

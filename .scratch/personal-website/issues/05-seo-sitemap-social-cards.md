@@ -4,9 +4,13 @@
 
 **Blocked by:** 02 — Homepage resume (single-page) + dark mode, 03 — Blog: MDX collection + listing + post render
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] Sitemap generated and including home + all blog routes
-- [ ] Homepage emits OG + Twitter card tags
-- [ ] Each blog post emits OG + Twitter card tags with title/excerpt/image
-- [ ] Share-card image handling works for posts
+- [x] Sitemap generated and including home + all blog routes
+- [x] Homepage emits OG + Twitter card tags
+- [x] Each blog post emits OG + Twitter card tags with title/excerpt/image
+- [x] Share-card image handling works for posts
+
+## Answer
+
+Added `@astrojs/sitemap` (emits `sitemap-index.xml` + `sitemap-0.xml` with all 6 absolute URLs). `BaseLayout` now emits canonical, Open Graph (og:type/title/description/url/image/site_name) and Twitter (summary_large_image + title/description/image) meta, with `og:image` defaulting to `/og-image.svg` (added to `public/`). Post pages pass `ogType="article"`. `astro check` clean.

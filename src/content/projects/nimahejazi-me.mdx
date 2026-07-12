@@ -4,6 +4,7 @@ date: 2026-07-12
 excerpt: "This site: a static Astro 5 + Tailwind v4 personal site with MDX content collections and KaTeX math rendering."
 tags: ["Astro", "Tailwind CSS", "MDX", "Vercel"]
 externalUrl: "https://github.com/nimahejazi/nimahejazi.me"
+externalLabel: "Visit GitHub repo"
 ---
 
 A short case study on how this site came together, covering the architecture
@@ -57,7 +58,9 @@ $$
 
 ## Deployment
 
-The site builds with `npm run build` and deploys to **Vercel**, with only the
-`main` branch auto-deploying via `vercel.json`. `@astrojs/sitemap` derives the
-sitemap from the configured `site` URL, and analytics stay opt-in behind an
-environment variable so the default build is tracker-free.
+The code lives on GitHub, and Vercel's Git integration turns every push to
+`main` into an automatic build and production deploy, with `npm run build`
+producing `dist/` and no manual step. `vercel.json` scopes production deploys to
+`main` (other branches get preview URLs), `@astrojs/sitemap` derives the sitemap
+from the configured `site` URL, and analytics stay opt-in behind an environment
+variable so the default build is tracker-free.

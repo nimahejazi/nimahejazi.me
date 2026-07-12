@@ -43,7 +43,7 @@ const { Content } = await render(project);
           href={project.data.externalUrl}
           class="mt-4 inline-flex items-center gap-2 font-mono text-xs text-cream-900 underline decoration-cream-400 underline-offset-4 hover:decoration-cream-900 dark:text-white dark:decoration-white/30 dark:hover:decoration-white"
         >
-          Visit site
+          {project.data.externalLabel || "Visit site"}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

@@ -121,9 +121,24 @@ posts and project pages, so a formula looks identical everywhere.
 
 ## Deployment and hygiene
 
-The site deploys to **Vercel** with `npm run build` → `dist/`, and only the `main`
-branch auto-deploys (configured in `vercel.json`). `@astrojs/sitemap` generates the
-XML sitemap from the `site` URL in `astro.config.mjs`.
+The source lives on GitHub, and deployment is handled by Vercel's Git
+integration: every push to the `main` branch automatically triggers a fresh
+`npm run build` and publishes the result, with no manual deploy step and no
+separate CI server. `vercel.json` is what wires this up:
+
+```json
+{
+  "framework": "astro",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "git": { "deploymentEnabled": { "main": true } }
+}
+```
+
+The `deploymentEnabled.main` flag scopes production deploys to `main` only;
+other branches still get instant preview deployments, which keeps experiments
+off the live site. `@astrojs/sitemap` generates the XML sitemap from the `site`
+URL in `astro.config.mjs`.
 
 Two small but deliberate choices keep it clean:
 
@@ -137,7 +152,7 @@ Two small but deliberate choices keep it clean:
 
 The result is a site that is almost entirely static HTML, content-addable by
 dropping a file into a folder, styled with a single CSS file, and capable of
-rendering math and code without bloating the client. The full source is on
-[GitHub](https://github.com/nimahejazi/nimahejazi.me), and there's a
-[project page](/projects/nimahejazi-me/) that covers the same build from the
-portfolio angle.
+rendering math and code without bloating the client.
+
+- **Source code:** [github.com/nimahejazi/nimahejazi.me](https://github.com/nimahejazi/nimahejazi.me)
+- **Project page:** [nimahejazi.me project write-up](/projects/nimahejazi-me/)

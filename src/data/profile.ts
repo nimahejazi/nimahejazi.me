@@ -247,7 +247,7 @@ export const profile: Profile = {
       title: "nimahejazi.me Personal Website",
       tags: ["Astro", "Tailwind CSS", "MDX"],
       description:
-        "Static personal site built with Astro 5, CSS-first Tailwind v4, MDX content collections, and KaTeX math — deployed on Vercel.",
+        "Static personal site (Astro 5, CSS-first Tailwind v4, MDX) with GitHub + Vercel auto-deploy on every push to main.",
       slug: "nimahejazi-me",
     },
   ],

@@ -73,10 +73,10 @@ import DarkModeToggle from "./DarkModeToggle.astro";
 
   <div
     id="mobile-menu"
-    class="hidden border-t border-cream-300 dark:border-white/10 md:hidden"
+    class="overflow-hidden transition-all duration-300 ease-out md:hidden"
   >
     <nav
-      class="mx-auto flex max-w-6xl flex-col gap-1 px-5 py-3 lg:px-10"
+      class="mx-auto flex max-w-6xl flex-col gap-1 border-t border-cream-300 px-5 py-3 lg:px-10 dark:border-white/10"
     >
       <a
         href="/blog"
@@ -107,19 +107,29 @@ import DarkModeToggle from "./DarkModeToggle.astro";
   </div>
 </header>
 
+<style>
+  :global(#mobile-menu) {
+    max-height: 0;
+    opacity: 0;
+  }
+  :global(#mobile-menu.is-open) {
+    max-height: 20rem;
+    opacity: 1;
+  }
+</style>
+
 <script>
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
-  toggle?.addEventListener("click", () => {
-    const nowHidden = menu?.classList.toggle("hidden");
-    toggle.setAttribute("aria-expanded", String(!nowHidden));
-  });
+  const setOpen = (open) => {
+    menu?.classList.toggle("is-open", open);
+    toggle?.setAttribute("aria-expanded", String(open));
+    if (menu) menu.inert = !open;
+  };
+  toggle?.addEventListener("click", () =>
+    setOpen(!menu?.classList.contains("is-open")),
+  );
   menu
     ?.querySelectorAll("a")
-    .forEach((link) =>
-      link.addEventListener("click", () => {
-        menu.classList.add("hidden");
-        toggle?.setAttribute("aria-expanded", "false");
-      }),
-    );
+    .forEach((link) => link.addEventListener("click", () => setOpen(false)));
 </script>

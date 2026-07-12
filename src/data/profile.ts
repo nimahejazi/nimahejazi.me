@@ -243,6 +243,13 @@ export const profile: Profile = {
       description:
         "Python utility that re-encodes video to H.265/HEVC for major file-size savings at preserved quality, with batch processing, progress tracking, and safe handling of edge cases such as interrupted conversions.",
     },
+    {
+      title: "nimahejazi.me Personal Website",
+      tags: ["Astro", "Tailwind CSS", "MDX"],
+      description:
+        "Static personal site built with Astro 5, CSS-first Tailwind v4, MDX content collections, and KaTeX math — deployed on Vercel.",
+      slug: "nimahejazi-me",
+    },
   ],
   contact: {
     email: "hello@nimahejazi.me",

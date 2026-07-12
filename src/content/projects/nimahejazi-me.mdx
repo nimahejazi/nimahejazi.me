@@ -1,0 +1,63 @@
+---
+title: "nimahejazi.me Personal Website"
+date: 2026-07-12
+excerpt: "This site: a static Astro 5 + Tailwind v4 personal site with MDX content collections and KaTeX math rendering."
+tags: ["Astro", "Tailwind CSS", "MDX", "Vercel"]
+externalUrl: "https://github.com/nimahejazi/nimahejazi.me"
+---
+
+A short case study on how this site came together, covering the architecture
+decisions, the styling approach, and the math rendering that ties the writing
+together.
+
+## Approach
+
+The goal was a content-first personal site that ships almost no JavaScript by
+default. **Astro 5** handles that with islands architecture: pages are rendered to
+static HTML at build time, and client-side JavaScript is added only where it is
+actually needed (the dark-mode toggle and one Preact visualizer).
+
+Content lives as **MDX files** validated by Zod schemas through Astro's content
+collections, so every post and project is type-checked at build time. Adding new
+writing is a matter of dropping a file into the right folder.
+
+## Styling
+
+Styling uses **Tailwind CSS v4** in its CSS-first mode, with no `tailwind.config.js`.
+Theme tokens and the dark-mode variant are declared directly in the global
+stylesheet:
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-cream-100: #faf8f3;
+  --color-brand-600: #5b5bd6;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+```
+
+Dark mode is driven by a `.dark` class on `<html>`, toggled and persisted on the
+client with no flash of incorrect theme.
+
+## Math and code
+
+Statistics-heavy posts need real math, so the Markdown pipeline runs
+`remark-math` + `rehype-katex` for **KaTeX** rendering, with **Shiki** providing
+paired light/dark code themes and line wrapping. The same renderer serves both
+blog and project pages.
+
+A block formula renders cleanly, for example the utilization bound from the
+scheduling work:
+
+$$
+u = \frac{\sum_{i} h_i}{H_{\text{capacity}}}
+$$
+
+## Deployment
+
+The site builds with `npm run build` and deploys to **Vercel**, with only the
+`main` branch auto-deploying via `vercel.json`. `@astrojs/sitemap` derives the
+sitemap from the configured `site` URL, and analytics stay opt-in behind an
+environment variable so the default build is tracker-free.

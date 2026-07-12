@@ -1,0 +1,143 @@
+---
+title: "Building nimahejazi.me: A Static Site with Astro, Tailwind v4, and KaTeX"
+date: 2026-07-12
+excerpt: "How I built this site with Astro 5, MDX + Zod content collections, CSS-first Tailwind v4, and KaTeX math, and why I chose each piece."
+tags: ["Astro", "Web Development", "Tailwind CSS"]
+---
+
+A personal site should be fast, easy to write for, and pleasant to maintain. This
+post walks through how I built **nimahejazi.me**, the stack I chose, and the
+reasoning behind each decision.
+
+## Why a static site?
+
+The content here is mostly long-form writing and a few project case studies. There
+is very little that needs a server: no accounts, no live database, no per-request
+logic. That points squarely at a **static site**: every page can be rendered at
+build time and served as plain HTML from a CDN.
+
+The alternatives I considered each had a cost I did not want to pay:
+
+- A traditional CMS (WordPress, etc.) means runtime, patching, and a heavier
+  attack surface for content that never changes.
+- A client-rendered SPA ships a JavaScript bundle just to display prose, which
+  hurts first paint and accessibility for no real gain here.
+- A hosted site builder locks the content and design into someone else's format.
+
+A static site generator keeps the content as files I own, renders them to fast
+HTML, and lets me host it for free on Vercel.
+
+## Astro as the metaframework
+
+I chose **Astro 5** as the engine. Astro's core idea is *islands architecture*:
+the page ships zero JavaScript by default, and you opt into interactivity only
+where you need it. For a content site that means the blog and project pages are
+pure HTML and CSS, with client-side JavaScript reserved for the few interactive
+bits (the dark-mode toggle, one Preact visualizer).
+
+```ts
+// astro.config.mjs: the integrations that power the site
+import tailwindcss from "@tailwindcss/vite";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+import preact from "@astrojs/preact";
+
+export default defineConfig({
+  site: "https://nimahejazi.me",
+  integrations: [mdx(), sitemap(), preact()],
+});
+```
+
+The practical win is that most of the site is as lightweight as a hand-written
+HTML page, while I still get components, layouts, and a real build pipeline.
+
+## Content as data with MDX and Zod
+
+Posts are not `.astro` pages; they are **MDX files** validated by a schema. Astro's
+content collections give me type-safe frontmatter, so a missing `title` or a
+malformed `date` fails the build instead of shipping a broken page.
+
+```ts
+// src/content/config.ts
+import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
+
+const blog = defineCollection({
+  loader: glob({ pattern: "**/*.mdx", base: "./src/content/blog" }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    excerpt: z.string(),
+    tags: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { blog, projects };
+```
+
+The same pattern backs the `projects` collection, so adding a new post or project
+is just dropping a file into the right folder.
+
+## Styling with Tailwind v4 (CSS-first)
+
+Styling uses **Tailwind CSS v4**, which drops the old `tailwind.config.js` in favor
+of a CSS-first configuration. The entire setup lives in one stylesheet:
+
+```css
+/* src/styles/global.css */
+@import "tailwindcss";
+
+@theme {
+  --color-cream-100: #faf8f3;
+  --color-brand-600: #5b5bd6;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+```
+
+The theme tokens (`@theme`) and the dark-mode variant are declared in CSS, not in a
+JS config. Dark mode is driven by a `.dark` class on `<html>`, toggled client-side
+and persisted, with no flash and no build-time theming.
+
+## Math and code rendering
+
+Because some posts are statistics-heavy, I wanted first-class math. That comes from
+`remark-math` + `rehype-katex`, wired straight into Astro's Markdown pipeline:
+
+```ts
+markdown: {
+  remarkPlugins: [remarkMath],
+  rehypePlugins: [rehypeKatex],
+  shikiConfig: {
+    themes: { light: "github-light", dark: "github-dark" },
+    wrap: true,
+  },
+},
+```
+
+Inline and block math render through **KaTeX**, and code blocks use **Shiki** with
+paired light/dark themes and line wrapping. The same MDX renderer serves both blog
+posts and project pages, so a formula looks identical everywhere.
+
+## Deployment and hygiene
+
+The site deploys to **Vercel** with `npm run build` → `dist/`, and only the `main`
+branch auto-deploys (configured in `vercel.json`). `@astrojs/sitemap` generates the
+XML sitemap from the `site` URL in `astro.config.mjs`.
+
+Two small but deliberate choices keep it clean:
+
+- **Analytics are opt-in.** Nothing loads unless `PUBLIC_ANALYTICS_SRC` is set in
+  `.env`, so the default build is tracker-free.
+- **A Vite pin.** `package.json` pins `vite` to `6.4.3` via `overrides`, because
+  Tailwind v4's Vite types lag Astro's bundled Vite. It's a one-line guard that
+  keeps the typecheck green.
+
+## Wrapping up
+
+The result is a site that is almost entirely static HTML, content-addable by
+dropping a file into a folder, styled with a single CSS file, and capable of
+rendering math and code without bloating the client. The full source is on
+[GitHub](https://github.com/nimahejazi/nimahejazi.me), and there's a
+[project page](/projects/nimahejazi-me/) that covers the same build from the
+portfolio angle.

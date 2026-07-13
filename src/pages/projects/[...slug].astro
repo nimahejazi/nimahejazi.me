@@ -17,6 +17,8 @@ const { Content } = await render(project);
 <ArticleLayout
   title={project.data.title}
   description={project.data.excerpt}
+  tags={project.data.tags}
+  section="Projects"
   backHref="/#projects"
   backLabel="← Back to projects"
 >

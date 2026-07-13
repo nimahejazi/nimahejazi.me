@@ -17,6 +17,8 @@ const { Content } = await render(post);
 <ArticleLayout
   title={post.data.title}
   description={post.data.excerpt}
+  tags={post.data.tags}
+  section="Blog"
   backHref="/blog"
   backLabel="← Back to blog"
 >

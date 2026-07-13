@@ -1,7 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#0.205 0.007 89" />
-  <rect x="60" y="60" width="1080" height="510" rx="24" fill="#0.288 0.008 89" />
-  <text x="100" y="280" font-family="Inter, sans-serif" font-size="72" font-weight="700" fill="#f4efe6">Nima Hejazi</text>
-  <text x="100" y="360" font-family="Inter, sans-serif" font-size="34" fill="#0.789 0.142 51">Hiring &amp; personal branding</text>
-  <text x="100" y="430" font-family="JetBrains Mono, monospace" font-size="26" fill="#0.677 0.009 89">nimahejazi.me</text>
+  <rect width="1200" height="630" fill="oklch(0.155 0.005 89)" />
+  <rect x="0" y="0" width="14" height="630" fill="oklch(0.563 0.193 36)" />
+  <text x="92" y="232" font-family="Inter, Helvetica, Arial, sans-serif" font-size="84" font-weight="700" fill="oklch(0.974 0.004 89)">Nima Hejazi</text>
+  <text x="94" y="300" font-family="Inter, Helvetica, Arial, sans-serif" font-size="36" font-weight="600" fill="oklch(0.789 0.142 51)">Data Analyst and Full-Stack Developer</text>
+  <text x="94" y="352" font-family="Inter, Helvetica, Arial, sans-serif" font-size="25" fill="oklch(0.677 0.009 89)">ETL pipelines, dashboards, and deployed web apps.</text>
+  <text x="94" y="388" font-family="Inter, Helvetica, Arial, sans-serif" font-size="25" fill="oklch(0.677 0.009 89)">Turning operational noise into clean products.</text>
+
+  <g font-family="Inter, Helvetica, Arial, sans-serif" font-size="23" font-weight="500">
+    <rect x="92" y="452" width="128" height="48" rx="24" fill="oklch(0.288 0.008 89)" />
+    <text x="156" y="482" text-anchor="middle" fill="oklch(0.948 0.006 90)">Python</text>
+
+    <rect x="236" y="452" width="176" height="48" rx="24" fill="oklch(0.288 0.008 89)" />
+    <text x="324" y="482" text-anchor="middle" fill="oklch(0.948 0.006 90)">TypeScript</text>
+
+    <rect x="428" y="452" width="86" height="48" rx="24" fill="oklch(0.288 0.008 89)" />
+    <text x="471" y="482" text-anchor="middle" fill="oklch(0.948 0.006 90)">SQL</text>
+
+    <rect x="530" y="452" width="118" height="48" rx="24" fill="oklch(0.288 0.008 89)" />
+    <text x="589" y="482" text-anchor="middle" fill="oklch(0.948 0.006 90)">React</text>
+
+    <rect x="664" y="452" width="128" height="48" rx="24" fill="oklch(0.288 0.008 89)" />
+    <text x="728" y="482" text-anchor="middle" fill="oklch(0.948 0.006 90)">Docker</text>
+
+    <rect x="808" y="452" width="98" height="48" rx="24" fill="oklch(0.288 0.008 89)" />
+    <text x="857" y="482" text-anchor="middle" fill="oklch(0.948 0.006 90)">LLMs</text>
+  </g>
+
+  <text x="94" y="582" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="26" fill="oklch(0.553 0.010 89)">nimahejazi.me</text>
 </svg>

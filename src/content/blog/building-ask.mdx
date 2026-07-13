@@ -1,0 +1,67 @@
+---
+title: "Building ask: An LLM in Your Terminal"
+date: 2026-07-13
+excerpt: "Why I built ask, a Go CLI that streams answers, returns runnable shell commands, and gates web search behind the model's own judgment."
+tags: ["Go", "CLI", "LLM", "Terminal"]
+---
+
+`ask` is a small Go command line tool that brings an LLM into the terminal. This
+post covers why it exists and the choices that keep it fast and out of the way.
+
+## Why a terminal assistant?
+
+Most days I have a question that is faster to ask than to grep the docs for: how
+do I revert one file in git, what port is this process holding, why is this log
+complaining. The friction was leaving the shell, opening a browser, and pasting
+back a command. `ask` collapses that loop to a single line.
+
+The first version did one thing: stream an answer. Two flags made it genuinely
+useful. `-c` returns a single bare command and copies it to the clipboard, and
+`-r` runs that command after a y/N prompt. Together they turn "I wonder how" into
+"it is done" without copy paste gymnastics.
+
+## Keeping the model local or cloud
+
+A terminal tool should not lock you into one provider. `ask init` launches a
+setup wizard that covers local runtimes (Ollama, LM Studio) and cloud APIs
+(Anthropic, OpenAI), plus any OpenAI-compatible custom endpoint. Settings land in
+`~/.ask/config.yaml`, and environment variables override the file. `ask config`
+prints the resolved configuration but never prints secrets.
+
+```text
+ask init ──► local (Ollama / LM Studio) | cloud (Anthropic / OpenAI) | custom
+```
+
+That split means the same binary works on a laptop with no API key and on a
+machine wired to a cloud model.
+
+## Gated web search
+
+The naive approach is to search the web on every call. That is slow, leaks
+queries, and rarely helps. Instead, `ask` hands the model a `web_search` tool and
+lets the model decide when it is unsure. Searches fire only when the model asks
+for them. The default backend is keyless DuckDuckGo, `BRAVE_API_KEY` switches to
+Brave, and `--no-web` disables the tool entirely for fully offline use.
+
+## Architecture in brief
+
+The code is plain Go. `main.go` parses flags and selects a provider; the
+`internal/` packages hold the provider clients, the chat loop, and the search
+backend. Configuration flows from file to environment variables, and GoReleaser
+produces Homebrew, prebuilt archives, and `go install` releases from one config.
+
+```text
+stdin / args ──► ask ──► provider ──► streamed answer or command
+                       └──► web_search (only when the model calls it)
+```
+
+Tests run with `go test ./...`, and the whole thing builds with `go build ./...`.
+
+## Wrapping up
+
+`ask` is deliberately small. It answers, it returns a command you can run, and it
+searches the web only when it has to. The result is a tool that stays in the
+background until you actually need it.
+
+- **Source code:** [github.com/nimahejazi/ask](https://github.com/nimahejazi/ask)
+- **Project page:** [ask write-up](/projects/ask/)

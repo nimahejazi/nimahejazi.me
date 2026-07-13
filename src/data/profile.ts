@@ -239,6 +239,13 @@ export const profile: Profile = {
       slug: "propertyspot",
     },
     {
+      title: "ask: Terminal LLM Assistant",
+      tags: ["Go", "CLI", "LLM", "Terminal"],
+      description:
+        "Small Go CLI that brings an LLM into the terminal: streamed answers, single runnable shell commands copied to the clipboard, and model-gated web search across local or cloud providers.",
+      slug: "ask",
+    },
+    {
       title: "Video Compression Tool",
       tags: ["Python", "H.265/HEVC", "FFmpeg"],
       description:

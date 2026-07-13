@@ -233,9 +233,10 @@ export const profile: Profile = {
   projects: [
     {
       title: "PropertySpot: Property Listing Management Platform",
-      tags: ["Laravel", "MySQL", "Stripe", "Docker", "CI/CD"],
+      tags: ["Laravel", "MySQL", "Stripe", "Docker", "Jenkins", "CICD"],
       description:
-        "Full-stack property listing platform built on Laravel 8.x with MySQL, role-based access control, Stripe payments, and email verification. Containerized with Docker (nginx + php-fpm) and shipped via a Jenkins CI/CD pipeline, with a React-powered interactive UI.",
+        "Full-stack property listing platform on Laravel 8.x and MySQL with role-based access control, Stripe payments, and email verification. Containerized with Docker (nginx + php-fpm), shipped via a Jenkins CI/CD pipeline, and fronted by a React-powered interactive UI.",
+      slug: "propertyspot",
     },
     {
       title: "Video Compression Tool",

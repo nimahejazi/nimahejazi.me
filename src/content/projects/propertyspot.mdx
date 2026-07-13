@@ -1,0 +1,76 @@
+---
+title: "PropertySpot: Property Listing Management Platform"
+date: 2023-06-15
+excerpt: "A full-stack property listing platform on Laravel 8.x and MySQL, with role-based access control, Stripe payments, email verification, Docker packaging, and a Jenkins CI/CD pipeline."
+tags: ["Laravel", "MySQL", "Stripe", "Docker", "Jenkins", "CICD"]
+externalUrl: "https://github.com/nimahejazi/propertyspot"
+externalLabel: "Visit GitHub repo"
+---
+
+A case study on **PropertySpot**, a full-stack property listing platform I built
+to manage real-estate listings end to end, from publishing and access control
+through payments and email verification, and ship it reliably with containers
+and a CI/CD pipeline.
+
+## Overview
+
+PropertySpot is a multi-tenant listing platform where users publish property
+listings and browse others'. The requirements pushed toward a conventional,
+batteries-included stack rather than something bespoke:
+
+- A relational model of users, listings, and payments.
+- Per-user isolation so owners only ever see and edit their own listings.
+- Paid listings via Stripe, with email verification and password recovery.
+- A repeatable, container-based deploy that a pipeline could build and push.
+
+## Architecture
+
+The application is a **Laravel 8.x** monolith backed by **MySQL**. Migrations in
+`database/migrations` keep the schema versioned, and the test suite runs against
+an in-memory SQLite database for speed.
+
+Deployment is container-first. The production image pairs **nginx** with
+**php-fpm** via `Dockerfile`, with `Dockerfile-dev` and a `docker-compose-dev.yml`
+for local work. A `Jenkinsfile` drives the CI/CD pipeline: build the image, run
+the test suite, and publish.
+
+```text
+nginx + php-fpm  ──►  Laravel 8.x app  ──►  MySQL
+        │
+   Dockerfile / docker-compose.yml
+        │
+   Jenkinsfile  ──►  build → test → deploy
+```
+
+## Authentication and role-based access
+
+Auth uses Laravel's built-in system, extended with custom middleware and
+policies. Users carry a `user` or `admin` role:
+
+- `CheckIfUserCanAccessListing` (and a `check-user` middleware) guarantee a user
+  can only read or mutate their own listings. Isolation is enforced at the
+  request boundary, not just in the UI.
+- Admin routes are gated by a `can:accessAdmin` policy.
+- Password reset tokens expire after 30 minutes, and an email-verification
+  workflow gates full account access.
+
+## Payments and email
+
+Listings are monetized through **Stripe**, with webhooks handled at
+`/stripe/payment-hook`. **Email verification**, password resets, and
+notifications go out over SMTP (Sendinblue) and simply log locally in
+development. Profile photos upload through `/users/profile-photo`, and public
+listing pages render at `/{slug}`.
+
+## Front-end
+
+The interactive surface is a **React**-powered UI layered over Blade-rendered
+pages, so browsing and editing feel immediate without a full SPA rewrite. Bugsnag
+reports errors in production so failures surface before users do.
+
+## Deployment
+
+The whole thing ships as Docker containers fronted by nginx. The `Jenkinsfile`
+turns each change into a built, tested, and deployed artifact, and per-environment
+`.env` files keep credentials out of the image. The result is a platform that
+builds the same way locally, in CI, and in production.

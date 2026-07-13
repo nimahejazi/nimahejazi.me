@@ -1,0 +1,84 @@
+---
+title: "Building PropertySpot: A Laravel Property Listing Platform"
+date: 2023-06-15
+excerpt: "How I built PropertySpot on Laravel 8.x and MySQL, containerized with Docker, shipped through a Jenkins pipeline, with role-based auth, Stripe payments, and email verification."
+tags: ["Laravel", "Web Development", "Docker", "CICD"]
+---
+
+PropertySpot is a full-stack property listing platform I built to take a listing
+from draft to published, paid, and verified, and to deploy the same way every
+time. This post walks through the stack and the reasoning behind each piece.
+
+## Why Laravel?
+
+The domain is a textbook relational problem: users own listings, listings have
+attributes and photos, and payments attach to listings. There was no need for a
+bespoke framework or a split frontend/backend service. **Laravel 8.x** gives the
+ORM, migrations, auth, queues, and mail out of the box, which let me spend effort
+on product logic instead of plumbing. MySQL backs it for a mature, relational
+store with transactions I can trust around payments.
+
+## Containerized from day one
+
+I wanted "works on my machine" to mean "works in production." The app runs as
+**nginx + php-fpm** in containers:
+
+- `Dockerfile` builds the production image; `Dockerfile-dev` and
+  `docker-compose-dev.yml` make local setup a single command.
+- `docker-compose.yml` wires the app to MySQL so the whole stack comes up
+  together.
+
+```text
+nginx + php-fpm  ──►  Laravel 8.x app  ──►  MySQL
+```
+
+Keeping the web server and PHP in defined images means the runtime is identical
+across environments, with no surprise differences between dev and prod.
+
+## Role-based access control
+
+Listings are private to their owner, so isolation had to be enforced server-side.
+Laravel's auth gives the foundation; I layered on custom guards:
+
+- A `check-user` middleware (and `CheckIfUserCanAccessListing`) ensures a request
+  can only touch listings the current user owns. The UI can't leak what the
+  backend won't serve.
+- Admins are gated by a `can:accessAdmin` policy, so privileged routes are
+  protected by authorization, not just by being hidden in the nav.
+- Password reset tokens expire after 30 minutes, and email verification gates
+  full access.
+
+## Payments and email
+
+Paid listings run through **Stripe**, with webhooks received at
+`/stripe/payment-hook` so payment state stays authoritative. **Email
+verification**, password resets, and notifications go out over SMTP (Sendinblue),
+and simply log in local development. Profile photos upload through
+`/users/profile-photo`, and public listing pages render at `/{slug}`.
+
+## A Jenkins pipeline
+
+Shipping by hand is how config drift starts. A `Jenkinsfile` defines the path
+from commit to production: build the image, run the test suite (PHPUnit, against
+an in-memory SQLite database for speed), and deploy. Per-environment `.env` files
+keep secrets out of the image.
+
+```text
+commit ──► Jenkinsfile ──► build → test → deploy
+```
+
+## The front-end
+
+The interactive parts, browsing and editing listings, are a **React** layer
+over Blade-rendered pages. That keeps the app feeling immediate without committing
+to a full single-page rewrite, and Bugsnag reports production errors so failures
+show up before users do.
+
+## Wrapping up
+
+The result is a platform that builds, tests, and deploys the same way everywhere:
+Laravel and MySQL for the domain, Docker for a consistent runtime, and Jenkins for
+a pipeline I don't have to think about.
+
+- **Source code:** [github.com/nimahejazi/propertyspot](https://github.com/nimahejazi/propertyspot)
+- **Project page:** [PropertySpot write-up](/projects/propertyspot/)

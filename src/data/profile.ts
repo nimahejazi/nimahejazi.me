@@ -157,7 +157,7 @@ export const profile: Profile = {
     },
   ],
   stats: [
-    { label: "Education", value: "Master of Business Analytics", sub: "UC Davis" },
+    { label: "Education", value: "MS in Business Analytics", sub: "UC Davis" },
     { label: "Specialty", value: "Agentic AI" },
     { label: "Also builds", value: "Software & AI" },
   ],

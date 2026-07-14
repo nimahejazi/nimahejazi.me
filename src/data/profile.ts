@@ -51,7 +51,7 @@ export interface Profile {
   headline: string;
   pitch: string;
   about: string;
-  stack: { languages: string[]; frontend: string[]; backend: string[]; tooling: string[] };
+  stack: { analysis: string[]; ai: string[]; data: string[]; engineering: string[] };
   skills: SkillGroup[];
   stats: { label: string; value: string }[];
   experience: ExperienceItem[];
@@ -69,20 +69,37 @@ export const profile: Profile = {
   location: "Chicago, IL",
   headline: "Nima Hejazi",
   pitch:
-    "Data analyst and full-stack web developer who turns operational noise " +
-    "into clean pipelines and clear products, from ETL and dashboards to " +
-    "deployed web apps.",
+    "Business Analyst specializing in Agentic AI and process improvement. I " +
+    "turn operational noise into clear requirements, KPI dashboards, and " +
+    "automated workflows, and I can build the software and AI behind them " +
+    "when it helps.",
   about:
-    "I build data systems and the web interfaces around them: Python ETL " +
-    "pipelines, executive dashboards, and responsive applications. Pragmatic, " +
-    "accessible by default, and tuned to be pleasant to read at 2am.",
+    "I'm a business analyst who connects stakeholders, requirements, and data " +
+    "to decisions. I map workflows, define KPIs, and translate business needs " +
+    "into automated pipelines and AI-assisted tooling. Because I can also " +
+    "build the software and models behind the analysis, the distance between " +
+    "insight and delivery stays short.",
   stack: {
-    languages: ["Python", "TypeScript", "JavaScript", "SQL", "PHP", "R"],
-    frontend: ["React", "Laravel Blade", "Bootstrap", "Tailwind CSS"],
-    backend: ["Node", "PostgreSQL", "MySQL", "MongoDB", "Express"],
-    tooling: ["Docker", "Git/GitHub", "CI/CD", "Cloud (AWS/Azure)"],
+    analysis: ["KPI Analysis", "A/B Testing", "Statistical Analysis", "Market Research", "ETL", "Data Pipelines"],
+    ai: ["LLMs", "Agentic AI", "Prompt Engineering", "AI Integration", "Machine Learning"],
+    data: ["Python", "SQL", "Pandas", "NumPy", "R"],
+    engineering: ["TypeScript", "React", "Node", "Cloud (AWS/Azure)", "CI/CD", "Docker"],
   },
   skills: [
+    {
+      category: "Business & Communication",
+      items: [
+        "Stakeholder Communication",
+        "Consulting",
+        "Agile",
+        "Decision Support",
+        "Price Setting",
+        "Insight Translation",
+        "Executive Summaries",
+        "Public Speaking",
+        "Advanced Excel",
+      ],
+    },
     {
       category: "Analytics & Statistics",
       items: [
@@ -95,29 +112,6 @@ export const profile: Profile = {
         "Market Research",
         "ETL",
         "Data Pipelines",
-      ],
-    },
-    {
-      category: "Engineering & Architecture",
-      items: [
-        "JavaScript",
-        "TypeScript",
-        "Python",
-        "SQL",
-        "PHP",
-        "Node.js",
-        "PostgreSQL",
-        "MySQL",
-        "RESTful APIs",
-        "React",
-        "Laravel",
-        "Express",
-        "NoSQL",
-        "MongoDB",
-        "CI/CD",
-        "Docker",
-        "Supabase",
-        "Cloud (AWS/Azure)",
       ],
     },
     {
@@ -139,24 +133,33 @@ export const profile: Profile = {
       ],
     },
     {
-      category: "Business & Communication",
+      category: "Software Engineering",
       items: [
-        "Stakeholder Communication",
-        "Consulting",
-        "Agile",
-        "Decision Support",
-        "Price Setting",
-        "Insight Translation",
-        "Executive Summaries",
-        "Public Speaking",
-        "Advanced Excel",
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "SQL",
+        "PHP",
+        "Node.js",
+        "PostgreSQL",
+        "MySQL",
+        "RESTful APIs",
+        "React",
+        "Laravel",
+        "Express",
+        "NoSQL",
+        "MongoDB",
+        "CI/CD",
+        "Docker",
+        "Supabase",
+        "Cloud (AWS/Azure)",
       ],
     },
   ],
   stats: [
     { label: "Business Analytics · UC Davis", value: "MSBA '26" },
-    { label: "Workflows & tooling", value: "Agentic AI" },
-    { label: "Data & web apps", value: "Full-stack" },
+    { label: "Specialty", value: "Agentic AI" },
+    { label: "Also builds", value: "Software & AI" },
   ],
   experience: [
     {

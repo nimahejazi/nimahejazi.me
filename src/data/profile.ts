@@ -9,7 +9,7 @@ export interface ExperienceItem {
   location?: string;
   period: string;
   description?: string;
-  highlights: string[];
+  highlights: (string | { text: string; href: string })[];
   tags?: string[];
 }
 
@@ -165,11 +165,12 @@ export const profile: Profile = {
       location: "Petaluma, CA",
       period: "Aug 2023 – Jul 2025",
       highlights: [
-        "Built and deployed custom Python ETL pipelines and scheduling models that automated heavy operational workflows, cutting manual processing time by 98%.",
-        "Redesigned internal business workflows and automated data flows, reducing scheduling and reporting errors by 94%.",
-        "Cleaned and validated datasets of over 8,000 records to identify and resolve underlying data discrepancies.",
-        "Developed clean executive dashboards that transformed complex operational data into actionable insights for leadership.",
-        "Wrote Python scripts to interface directly with institutional databases, replacing outdated manual tasks with scalable automated solutions.",
+        "Cut processing time 98%",
+        "Reduced scheduling errors 94%",
+        "Built ETL pipelines and executive dashboards",
+        "KPI and leadership reporting",
+        "Mapped and automated workflows into SOPs",
+        { text: "Requirements gathering — see case study", href: "/projects/lock-scheduler/" },
       ],
       tags: ["Business Analytics", "Data Mining"],
     },
@@ -179,10 +180,10 @@ export const profile: Profile = {
       location: "Santa Rosa, CA",
       period: "2020 – 2023",
       highlights: [
-        "Collaborated directly with clients to translate their technical and business requirements into fully functional digital products.",
-        "Developed custom, responsive websites utilizing modern front-end frameworks to enhance clients' online presence and user engagement.",
-        "Architected and implemented tailored IT and data management solutions to streamline client operations.",
-        "Managed end-to-end video production workflows, from processing raw footage to organizing and compressing final digital assets.",
+        "Elicited and translated client requirements",
+        "Agile, end-to-end delivery",
+        "Automated client workflows",
+        "Data and API integrations",
       ],
       tags: ["Client Collaboration", "End-to-End Ownership"],
     },
@@ -192,11 +193,10 @@ export const profile: Profile = {
       location: "Tehran, Iran",
       period: "Jul 2006 – Oct 2019",
       highlights: [
-        "Led a 10-person cross-functional engineering team through the entire software development lifecycle to build a comprehensive financial news and stock market platform.",
-        "Acted as the primary liaison between business stakeholders and engineering, translating complex financial requirements into actionable development roadmaps.",
-        "Developed time-series forecasting models to track and predict real-time stock market trends.",
-        "Architected integrated reporting features capable of ingesting and processing live data feeds with zero latency.",
-        "Created interactive data visualization tools that made high-velocity, complex financial data accessible and easy to interpret for end-users.",
+        "Led a 10-person Agile team",
+        "Translated financial needs into roadmaps",
+        "Reporting and compliance modules",
+        "Role-based access controls",
       ],
       tags: ["Team Leadership", "Compliance Systems"],
     },

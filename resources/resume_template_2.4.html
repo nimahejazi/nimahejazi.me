@@ -1,0 +1,792 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Nima Hejazi - Business Analyst Resume</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      /* Add this to your HTML/CSS file */
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed-variant": "#454749",
+              "on-tertiary-fixed-variant": "#3c4853",
+              "inverse-on-surface": "#f0f1f2",
+              "on-tertiary": "#ffffff",
+              "surface-tint": "#5d5e61",
+              outline: "#75777a",
+              "on-secondary": "#ffffff",
+              "error-container": "#ffdad6",
+              secondary: "#496177",
+              "on-primary-fixed": "#1a1c1e",
+              "primary-fixed-dim": "#c6c6c9",
+              tertiary: "#000001",
+              "primary-fixed": "#e2e2e5",
+              "on-secondary-container": "#4d657b",
+              "inverse-surface": "#2e3132",
+              "surface-container-high": "#e7e8e9",
+              "on-error": "#ffffff",
+              "on-primary": "#ffffff",
+              "surface-container": "#edeeef",
+              "on-primary-container": "#838486",
+              "on-tertiary-container": "#798691",
+              "surface-dim": "#d9dadb",
+              "tertiary-fixed-dim": "#bbc8d5",
+              "surface-variant": "#e1e3e4",
+              surface: "#f8f9fa",
+              "surface-container-low": "#f3f4f5",
+              mist: "#F1F3F5",
+              "ink-deep": "#1A1C1E",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed-variant": "#31495e",
+              "surface-container-highest": "#e1e3e4",
+              "on-secondary-fixed": "#011d31",
+              background: "#f8f9fa",
+              "border-subtle": "#DEE2E6",
+              "on-surface": "#191c1d",
+              "secondary-fixed": "#cde5ff",
+              "secondary-container": "#c9e2fd",
+              "secondary-fixed-dim": "#b0c9e3",
+              "inverse-primary": "#c6c6c9",
+              error: "#ba1a1a",
+              "on-background": "#191c1d",
+              "tertiary-container": "#111d26",
+              "tertiary-fixed": "#d7e4f1",
+              "brand": "#CD3800",
+              "slate-gray": "#435B71",
+              "on-tertiary-fixed": "#101d26",
+              "surface-bright": "#f8f9fa",
+              "on-error-container": "#93000a",
+              "outline-variant": "#c5c6ca",
+              "on-surface-variant": "#44474a",
+              primary: "#000101",
+              "primary-container": "#1a1c1e",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "margin-mobile": "1.25rem",
+              "margin-desktop": "4rem",
+              "container-max": "840px",
+              "inline-gap": "0.5rem",
+              "section-gap": "2rem" /* Reduced from 3rem */,
+              "entry-gap": "1rem" /* Reduced from 1.5rem */,
+            },
+            fontFamily: {
+              "experience-meta": ["Inter"],
+              "body-sm": ["Inter"],
+              "section-heading": ["Inter"],
+              "display-name": ["Playfair Display"],
+              "body-main": ["Inter"],
+              "display-name-mobile": ["Playfair Display"],
+              "experience-title": ["Inter"],
+              "label-caps": ["Inter"],
+            },
+            fontSize: {
+              "experience-meta": [
+                "14px",
+                { lineHeight: "20px", fontWeight: "400" },
+              ] /* Slightly smaller */,
+              "body-sm": [
+                "12px",
+                { lineHeight: "1.4", fontWeight: "400" },
+              ] /* Slightly smaller */,
+              "section-heading": [
+                "16px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.1em",
+                  fontWeight: "600",
+                },
+              ] /* Slightly smaller */,
+              "display-name": [
+                "40px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ] /* Reduced from 48px */,
+              "body-main": [
+                "14px",
+                { lineHeight: "1.5", fontWeight: "400" },
+              ] /* Reduced from 15px */,
+              "display-name-mobile": [
+                "28px",
+                { lineHeight: "1.2", fontWeight: "700" },
+              ] /* Reduced from 32px */,
+              "experience-title": [
+                "16px",
+                { lineHeight: "24px", fontWeight: "600" },
+              ] /* Reduced from 18px */,
+              "label-caps": [
+                "10px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "700",
+                },
+              ] /* Slightly smaller */,
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .section-header-border {
+        border-bottom: 2px solid #CD3800;
+        padding-bottom: 4px;
+      }
+      .bullet-list li {
+        position: relative;
+        padding-left: 1rem;
+      }
+      .bullet-list li::before {
+        content: "■";
+        position: absolute;
+        left: 0;
+        top: 0.35em;
+        font-size: 0.5em;
+        color: #75777a;
+      }
+      .keep-together {
+        page-break-inside: avoid; /* Legacy property */
+        break-inside: avoid; /* Modern property */
+      }
+    </style>
+  </head>
+  <body
+    class="text-on-surface font-body-main antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed bg-surface-container-lowest"
+  >
+    <main class="mx-auto min-h-screen max-w-[900px] px-6 md:px-12">
+      <!-- Header Section -->
+      <section class="text-center mb-10">
+        <h1
+          class="font-display-name-mobile text-display-name-mobile md:font-display-name md:text-display-name text-ink-deep mb-2"
+        >
+          Nima Hejazi<span class="text-brand">.</span>
+        </h1>
+        <div
+          class="flex flex-wrap justify-center gap-x-3 gap-y-1 font-body-sm text-body-sm text-on-surface-variant whitespace-nowrap overflow-x-auto"
+        >
+          <span class="inline-flex items-center gap-1">
+            <span
+              class="material-symbols-outlined text-brand"
+              style="font-size: 14px"
+              >location_on</span
+            >
+            San Francisco, CA
+          </span>
+          <span class="text-border-subtle hidden sm:inline">|</span>
+          <span class="inline-flex items-center gap-1">
+            <span
+              class="material-symbols-outlined text-brand"
+              style="font-size: 14px"
+              >phone</span
+            >
+            (707) 899-2020
+          </span>
+          <span class="text-border-subtle hidden sm:inline">|</span>
+          <a
+            class="inline-flex items-center gap-1 hover:text-primary transition-colors"
+            href="mailto:nhejazi@gmail.com"
+          >
+            <span
+              class="material-symbols-outlined text-brand"
+              style="font-size: 14px"
+              >mail</span
+            >
+            nhejazi@gmail.com
+          </a>
+          <span class="text-border-subtle hidden sm:inline">|</span>
+          <a
+            class="inline-flex items-center gap-1 hover:text-primary transition-colors"
+            href="https://linkedin.com/in/nhejazi"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span
+              class="material-symbols-outlined text-brand"
+              style="font-size: 14px"
+              >link</span
+            >
+            linkedin.com/in/nhejazi
+          </a>
+          <span class="text-border-subtle hidden sm:inline">|</span>
+          <a
+            class="inline-flex items-center gap-1 hover:text-primary transition-colors"
+            href="https://nimahejazi.me"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span
+              class="material-symbols-outlined text-brand"
+              style="font-size: 14px"
+              >language</span
+            >
+            nimahejazi.me
+          </a>
+        </div>
+      </section>
+       <!-- Professional Summary -->
+      <section class="mb-10 keep-together" id="summary">
+        <h2
+          class="font-section-heading text-section-heading text-on-surface uppercase tracking-[0.1em] section-header-border mb-4"
+        >
+          Professional Summary
+        </h2>
+        <p
+          class="font-body-main text-body-main text-on-surface-variant leading-relaxed"
+        >
+          Business Analyst with an MS in Business Analytics (UC Davis, Jun 2026) and 3+ years of data and operations analysis experience. Bridges business stakeholders and technical teams—eliciting and translating requirements into automated workflows, KPI dashboards, and data-driven recommendations. Lean Six Sigma Green Belt who specializes in applying Agentic AI and LLMs to process improvement and decision support.
+        </p>
+      </section>
+       <!-- Education Section -->
+      <section class="mb-10" id="education">
+        <h2
+          class="font-section-heading text-section-heading text-on-surface uppercase tracking-[0.1em] section-header-border mb-4"
+        >
+          Education
+        </h2>
+        <div class="flex flex-col gap-4">
+          <!-- UC Davis -->
+          <div class="keep-together">
+            <div
+              class="flex flex-col sm:flex-row justify-between items-baseline"
+            >
+              <h3
+                class="font-experience-title text-experience-title text-ink-deep"
+              >
+                University of California, Davis
+              </h3>
+              <span
+                class="font-experience-meta text-experience-meta text-on-surface-variant"
+                >June 2026</span
+              >
+            </div>
+            <div
+              class="font-experience-meta text-experience-meta text-on-surface italic"
+            >
+              Master of Science, Business Analytics
+            </div>
+            <div class="flex flex-wrap gap-1.5 mt-1.5 items-center">
+              <span
+                class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-normal w-full"
+                >Notable Courses:</span
+              >
+              <span
+                class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                >Machine Learning & AI</span
+              >
+              <span
+                class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                >Big Data</span
+              >
+              <span
+                class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                >Data Management</span
+              >
+              <span
+                class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                >Data Design & Representation</span
+              >
+              <span
+                class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                >Information, Insight & Impact</span
+              >
+            </div>
+          </div>
+          <!-- Sonoma State -->
+          <div class="keep-together">
+            <div
+              class="flex flex-col sm:flex-row justify-between items-baseline"
+            >
+              <h3
+                class="font-experience-title text-experience-title text-ink-deep"
+              >
+                Sonoma State University
+              </h3>
+              <span
+                class="font-experience-meta text-experience-meta text-on-surface-variant"
+                >December 2024</span
+              >
+            </div>
+            <div
+              class="font-experience-meta text-experience-meta text-on-surface italic"
+            >
+              Bachelor of Science, Business Administration; <br />
+              Minor: Computer
+              Science
+            </div>
+            <div class="flex flex-wrap gap-1.5 mt-1.5 items-center">
+              <span
+                class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-normal w-full"
+                >Notable Courses:</span
+              >
+              <span
+                class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                >Business Data Analysis & Interpretation</span
+              >
+              <span
+                class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                >Database Management System Design</span
+              >
+              <span
+                class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                >Management Information Systems</span
+              >
+              <span
+                class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                >Operations & Supply Chain Management</span
+              >
+              <span
+                class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                >Managerial Finance</span
+              >
+            </div>
+          </div>
+          <div class="pt-1">
+            <p
+              class="font-body-sm text-body-sm text-on-surface-variant p-2 px-3 rounded border border-border-subtle inline-block bg-surface-container-lowest"
+            >
+              <strong class="font-semibold text-ink-deep"
+                >Certification:</strong
+              >
+              Lean Six Sigma Green Belt, UC Davis (Apr 2026)
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- Work Experience Section -->
+      <section class="mb-10" id="experience">
+        <h2
+          class="font-section-heading text-section-heading text-on-surface uppercase tracking-[0.1em] section-header-border mb-4"
+        >
+          Work Experience
+        </h2>
+        <div class="flex flex-col gap-6">
+          <!-- SRJC -->
+          <div class="keep-together">
+            <div
+              class="flex flex-col sm:flex-row justify-between items-baseline"
+            >
+              <h3
+                class="font-experience-title text-experience-title text-ink-deep"
+              >
+                Santa Rosa Junior College
+              </h3>
+              <span
+                class="font-experience-meta text-experience-meta text-on-surface-variant"
+                >Petaluma, CA</span
+              >
+            </div>
+            <div
+              class="flex flex-col sm:flex-row justify-between items-baseline mb-1"
+            >
+              <span
+                class="font-experience-meta text-experience-meta text-on-surface italic"
+                >Data &amp; Operations Analyst</span
+              >
+              <span
+                class="font-experience-meta text-experience-meta text-on-surface-variant"
+                >Aug 2023 – July 2025</span
+              >
+            </div>
+            <ul
+              class="bullet-list font-body-main text-body-main text-on-surface-variant grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 ml-1 pl-4"
+            >
+              <li>Cut processing time 98%</li>
+              <li>Reduced errors 94%</li>
+              <li>Built ETL &amp; dashboards</li>
+              <li>KPI &amp; leadership reporting</li>
+              <li>Mapped &amp; automated workflows (SOPs)</li>
+              <li>
+                Requirements gathering; <a class='underline' href="https://nimahejazi.me/case-study/case-study-streamlining-class-scheduling-for-santa-rosa-junior-college/">case study</a>
+              </li>
+            </ul>
+            <div class="flex flex-wrap gap-1.5 mt-1.5 items-center">
+
+              <span
+                class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-normal w-full"
+                >Notable Experiences Gained:</span
+              >
+                <span
+                  class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                  >Business Analysis</span
+                >
+                <span
+                  class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                  >Requirements Elicitation</span
+                >
+                <span
+                  class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                  >KPI & Reporting</span
+                >
+                <span
+                  class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                  >Process Engineering</span
+                >
+            </div>
+
+          </div>
+          <!-- Self Employed -->
+          <div class="keep-together">
+            <div
+              class="flex flex-col sm:flex-row justify-between items-baseline"
+            >
+              <h3
+                class="font-experience-title text-experience-title text-ink-deep"
+              >
+                Self-Employed
+              </h3>
+              <span
+                class="font-experience-meta text-experience-meta text-on-surface-variant"
+                >Santa Rosa, CA</span
+              >
+            </div>
+            <div
+              class="flex flex-col sm:flex-row justify-between items-baseline mb-1"
+            >
+              <span
+                class="font-experience-meta text-experience-meta text-on-surface italic"
+                >Freelance Web Developer &amp; Digital Media Consultant</span
+              >
+              <span
+                class="font-experience-meta text-experience-meta text-on-surface-variant"
+                >2020 – 2023</span
+              >
+            </div>
+            <ul
+              class="bullet-list font-body-main text-body-main text-on-surface-variant grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 ml-1 pl-4"
+            >
+              <li>Elicited client requirements</li>
+              <li>Agile end-to-end delivery</li>
+              <li>Automated client workflows</li>
+              <li>Data &amp; API integrations</li>
+            </ul>
+
+            <div class="flex flex-wrap gap-1.5 mt-1.5 items-center">
+
+              <span
+                class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-normal w-full"
+                >Notable Experiences Gained:</span
+              >
+                <span
+                  class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                  >Requirements Elicitation</span
+                >
+                <span
+                  class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                  >Client Collaboration</span
+                >
+                <span
+                  class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                  >Project Management</span
+                >
+            </div>
+
+          </div>
+          <!-- Gamma Direct -->
+          <div class="keep-together">
+            <div
+              class="flex flex-col sm:flex-row justify-between items-baseline"
+            >
+              <h3
+                class="font-experience-title text-experience-title text-ink-deep"
+              >
+                Gamma Direct
+              </h3>
+              <span
+                class="font-experience-meta text-experience-meta text-on-surface-variant"
+                >Tehran, Iran</span
+              >
+            </div>
+            <div
+              class="flex flex-col sm:flex-row justify-between items-baseline mb-1"
+            >
+              <span
+                class="font-experience-meta text-experience-meta text-on-surface italic"
+                >Software Project Lead</span
+              >
+              <span
+                class="font-experience-meta text-experience-meta text-on-surface-variant"
+                >July 2006 – Oct 2019</span
+              >
+            </div>
+            <ul
+              class="bullet-list font-body-main text-body-main text-on-surface-variant grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 ml-1 pl-4"
+            >
+              <li>Led 10-person Agile team</li>
+              <li>Translated financial needs</li>
+              <li>Reporting &amp; compliance modules</li>
+              <li>Role-based access controls</li>
+            </ul>
+
+            <div class="flex flex-wrap gap-1.5 mt-1.5 items-center">
+
+              <span
+                class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider font-normal w-full"
+                >Notable Experiences Gained:</span
+              >
+                <span
+                  class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                  >Agile Facilitation</span
+                >
+                <span
+                  class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                  >Governance & Compliance</span
+                >
+                <span
+                  class="bg-surface-container-low text-on-surface font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle/50"
+                  >Requirements Translation</span
+                >
+            </div>
+
+          </div>
+          </div>
+        </div>
+      </section>
+       <!-- Technical Projects Section -->
+      <section class="mb-10 keep-together" id="projects">
+        <h2
+          class="font-section-heading text-section-heading text-on-surface uppercase tracking-[0.1em] section-header-border mb-4"
+        >
+          Technical Projects
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Project 1 -->
+          <div
+            class="border border-border-subtle rounded p-4 hover:bg-mist transition-colors duration-200"
+          >
+            <h3
+              class="font-experience-title text-experience-title text-ink-deep mb-1.5 flex items-center gap-2"
+            >
+              <span
+                class="material-symbols-outlined text-brand"
+                style="font-size: 18px"
+                >insights</span
+              >
+              Sage Functional Health: Pricing Strategy
+            </h3>
+            <p
+              class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed"
+            >
+              As part of the UC Davis MSBA Graduate Practicum, analyzed the practice's operational and service data to design a discriminated pricing model. The price-setting strategy increased profit by 24% while preserving client accessibility, demonstrating data-driven financial analysis and decision support.
+            </p>
+          </div>
+          <!-- Project 2 -->
+          <div
+            class="border border-border-subtle rounded p-4 hover:bg-mist transition-colors duration-200"
+          >
+            <h3
+              class="font-experience-title text-experience-title text-ink-deep mb-1.5 flex items-center gap-2"
+            >
+              <span
+                class="material-symbols-outlined text-brand"
+                style="font-size: 18px"
+                >smart_toy</span
+              >
+              AI Lead &amp; Positioning Engine
+            </h3>
+            <p
+              class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed"
+            >
+              Built an LLM-powered tool that fetches a business's website and social-media presence, ranks how well it is positioned against stated goals, and automatically generates leads, combining Agentic AI analysis with web and social search to deliver actionable market-positioning insights.
+            </p>
+          </div>
+          <div class="text-left mt-0">
+            <a
+              class="inline-flex items-center gap-1 font-body-sm text-body-sm text-brand hover:text-primary transition-colors"
+              href="https://nimahejazi.me/#projects"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-size: 16px"
+                >link</span
+              >
+              View all projects at nimahejazi.me/#projects
+            </a>
+          </div>
+        </div>
+      </section>
+
+
+       <!-- Skills Section -->
+      <section class="mb-10 keep-together" id="skills">
+        <h2
+          class="font-section-heading text-section-heading text-on-surface uppercase tracking-[0.1em] section-header-border mb-4"
+        >
+          Skills
+        </h2>
+        <div class="space-y-2.5">
+          <div
+            class="flex flex-col sm:flex-row gap-2 border-b border-border-subtle/50 pb-2.5 last:border-b-0 keep-together"
+          >
+            <h3
+              class="font-experience-title text-experience-title text-brand sm:w-1/4 shrink-0 font-bold"
+            >
+              Business Analysis
+            </h3>
+            <div class="flex flex-wrap gap-1.5 content-start">
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Requirements Elicitation</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Process Engineering</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Agile / Scrum</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >SDLC</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Stakeholder Comm.</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Decision Support</span
+              >
+            </div>
+          </div>
+          <div
+            class="flex flex-col sm:flex-row gap-2 border-b border-border-subtle/50 pb-2.5 last:border-b-0 keep-together"
+          >
+            <h3
+              class="font-experience-title text-experience-title text-brand sm:w-1/4 shrink-0 font-bold"
+            >
+              Analytics &amp; Finance
+            </h3>
+            <div class="flex flex-wrap gap-1.5 content-start">
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >KPI Analysis</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Financial Modeling</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Financial Analysis</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Data Cleaning</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Statistical Analysis</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Market Research</span
+              >
+            </div>
+          </div>
+          <div
+            class="flex flex-col sm:flex-row gap-2 border-b border-border-subtle/50 pb-2.5 last:border-b-0 keep-together"
+          >
+            <h3
+              class="font-experience-title text-experience-title text-brand sm:w-1/4 shrink-0 font-bold"
+            >
+              Data &amp; AI
+            </h3>
+            <div class="flex flex-wrap gap-1.5 content-start">
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Dashboards &amp; Reporting</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Reporting Automation</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Data Modeling</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Agentic AI (Google ADK)</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >LLMs</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >AI Automation</span
+              >
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-2 border-b border-border-subtle/50 pb-2.5 last:border-b-0 keep-together">
+            <h3
+              class="font-experience-title text-experience-title text-brand sm:w-1/4 shrink-0 font-bold"
+            >
+              Dev &amp; Tools
+            </h3>
+            <div class="flex flex-wrap gap-1.5 content-start">
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Python</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >SQL</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >TypeScript</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >RESTful APIs</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Cloud (AWS)</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Advanced Excel</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Jira</span
+              >
+              <span
+                class="bg-mist text-ink-deep font-body-sm text-body-sm px-2 py-0.5 rounded border border-border-subtle"
+                >Git/GitHub</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

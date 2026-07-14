@@ -53,7 +53,7 @@ export interface Profile {
   about: string;
   stack: { analysis: string[]; ai: string[]; data: string[]; engineering: string[] };
   skills: SkillGroup[];
-  stats: { label: string; value: string }[];
+  stats: { label: string; value: string; sub?: string }[];
   experience: ExperienceItem[];
   education: EducationItem[];
   projects: ProjectItem[];
@@ -157,7 +157,7 @@ export const profile: Profile = {
     },
   ],
   stats: [
-    { label: "Business Analytics", value: "MSBA '26 (UC Davis)" },
+    { label: "Education", value: "Master of Business Analytics", sub: "UC Davis" },
     { label: "Specialty", value: "Agentic AI" },
     { label: "Also builds", value: "Software & AI" },
   ],

@@ -63,6 +63,11 @@ import { profile } from "../data/profile";
               </dt>
               <dd class="mt-1 text-[1.625rem] font-normal leading-tight tracking-tight">
                 {stat.value}
+                {stat.sub && (
+                  <span class="mt-1 block text-sm font-normal text-cream-600 dark:text-cream-500">
+                    {stat.sub}
+                  </span>
+                )}
               </dd>
             </div>
           ))

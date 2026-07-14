@@ -232,6 +232,13 @@ export const profile: Profile = {
   ],
   projects: [
     {
+      title: "Lock Scheduler: Automated Class Scheduling System for SRJC",
+      tags: ["Python", "SQLite", "wxPython", "Automation", "Process Improvement"],
+      description:
+        "Desktop app (Python, SQLite, wxPython) that replaced a manual, multi-source Excel scheduling workflow at Santa Rosa Junior College — cutting scheduling errors by 94% and weekly effort from 10 hours to 15 minutes.",
+      slug: "lock-scheduler",
+    },
+    {
       title: "PropertySpot: Property Listing Management Platform",
       tags: ["Laravel", "MySQL", "Stripe", "Docker", "Jenkins", "CICD"],
       description:

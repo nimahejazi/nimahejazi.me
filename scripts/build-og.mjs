@@ -59,17 +59,17 @@ async function renderCartoonCard() {
       { input: cartoon, left: 580, top: 15 },
       { input: essayCard, left: 0, top: 0 },
     ])
-    .png()
-    .toFile(join(pub, "og", "vibe-coding-enough.png"));
-  console.log("wrote public/og/vibe-coding-enough.png");
+    .jpeg({ quality: 90 })
+    .toFile(join(pub, "og", "vibe-coding-enough.jpg"));
+  console.log("wrote public/og/vibe-coding-enough.jpg");
 }
 
 async function renderFallback() {
   await sharp(bg())
     .composite([{ input: fallbackCard, left: 0, top: 0 }])
-    .png()
-    .toFile(join(pub, "og-image.png"));
-  console.log("wrote public/og-image.png (fixed fallback)");
+    .jpeg({ quality: 90 })
+    .toFile(join(pub, "og-image.jpg"));
+  console.log("wrote public/og-image.jpg (fixed fallback)");
 }
 
 await mkdir(join(pub, "og"), { recursive: true });

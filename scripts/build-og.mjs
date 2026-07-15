@@ -50,7 +50,7 @@ const fallbackCard = textSvg([
 ]);
 
 async function renderCartoonCard() {
-  const cartoon = await sharp(join(pub, "images/vibe-coding-confused.png"))
+  const cartoon = await sharp(join(pub, "images/vibe-coding-confused.jpg"))
     .resize(600, 600)
     .png()
     .toBuffer();

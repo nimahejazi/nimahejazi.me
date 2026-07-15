@@ -10,15 +10,16 @@ interface Props {
   ogType?: "website" | "article";
   tags?: string[];
   section?: string;
+  image?: string;
   backHref: string;
   backLabel: string;
 }
 
-const { title, description, ogType = "article", tags = [], section, backHref, backLabel } =
+const { title, description, ogType = "article", tags = [], section, image, backHref, backLabel } =
   Astro.props;
 ---
 
-<BaseLayout title={title} description={description} ogType={ogType} tags={tags} section={section}>
+<BaseLayout title={title} description={description} ogType={ogType} tags={tags} section={section} image={image}>
   <Header />
   <main class="mx-auto max-w-3xl px-5 py-20 lg:px-10">
     <a

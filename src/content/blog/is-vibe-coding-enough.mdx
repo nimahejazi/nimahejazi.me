@@ -1,0 +1,140 @@
+---
+title: "Is Vibe Coding Enough to Build and Maintain Software?"
+date: 2026-07-15
+excerpt: "Vibe coding is a fantastic way to prototype and play, but keeping software alive long term takes real engineering discipline. Here is how I think about using AI without letting it rot your codebase."
+tags: ["AI", "Software Engineering", "Vibe Coding"]
+---
+
+A few months ago I built a throwaway script by just chatting with an AI until it
+worked. I had no plan, no tests, and only a loose idea of what the code was doing.
+It was fun. It shipped in an afternoon. That is the magic of vibe coding, and it
+is genuinely useful.
+
+But then I wanted to change one small thing, and the whole thing broke. I had no
+idea why. The AI had written code I did not fully understand, and now I was stuck
+maintaining a black box I never designed. That experience is what this post is
+about. Vibe coding can absolutely get you started, but keeping software alive is a
+different job, and the rules change once the fun part is over.
+
+## What vibe coding is good at
+
+Vibe coding is the practice of describing what you want in plain language and
+letting an AI produce the code. It is wonderful for two things.
+
+First, hobby projects. When you are just tinkering, the goal is to see something
+work, not to build a cathedral. Speed and delight matter more than structure. AI
+is a great sparring partner for that.
+
+Second, prototyping. If you need to test whether an idea is even worth building,
+a fast AI-generated sketch can save you weeks. You can validate the question
+before you commit to the answer.
+
+The trap is thinking those strengths carry over to production. They do not. A
+prototype that works once on your machine is not the same as software that has to
+keep working for years while requirements shift and dependencies age.
+
+## Always use a language you understand
+
+This is the rule I broke first, and the one I now treat as non negotiable. If you
+let an AI write in a language or framework you do not understand, you have handed
+over the wheel and strapped yourself into the passenger seat with no brakes.
+
+The reason is simple. AI will make mistakes, and you are the only safety check.
+If you cannot read the code well enough to spot a bad pattern, a leaking
+resource, or a silent failure, then you are not reviewing the work, you are
+praying about it. Pick a stack you could maintain by hand even if the AI
+disappeared tomorrow. The AI should extend your skill, not replace it.
+
+## Software engineering matters more, not less
+
+There is a strange myth going around that AI makes engineering discipline
+obsolete. The opposite is true. When a human writes every line, they carry
+context in their head. When an AI writes the lines, that context lives nowhere
+except in a chat transcript you will never reread. The code is the only durable
+record, so the code has to be clean, modular, and honest about its limits.
+
+Rigor is what keeps an AI-assisted project from turning into soup. That means
+thinking step by step instead of asking for a whole app at once. It means
+understanding each piece before moving to the next. And it means testing.
+
+## Test driven development keeps you honest
+
+I used to think TDD was a ceremony for large teams. With AI in the loop, it became
+essential. The reason is that tests give you a ground truth the AI cannot argue
+with. You write the test for what should happen, the AI writes the code, and the
+test decides who is right.
+
+TDD also forces small, well defined steps. Instead of a vague request for a
+feature, you write a failing test that pins down exactly the behavior you want.
+That precision is exactly what AI needs to be useful. Vague prompts produce vague
+code. Concrete expectations produce working software.
+
+If you are not writing tests, you are not building software. You are collecting
+outputs and hoping they line up.
+
+## Git is your memory
+
+Version control is not optional here. With an AI producing lots of code quickly,
+you need a history you can trust. Git gives you three things that matter
+enormously when working this way.
+
+First, it lets you revert. When a change makes everything worse, and it will, you
+want a one line escape back to the last known good state. Second, it makes
+changes reviewable. A small commit that does one thing is something you can
+actually read and understand. A giant commit that rewrote the world is not. Third,
+it gives you a story. Six months later, the commit log is the only honest account
+of why the software is the way it is.
+
+Commit often, in small chunks, with messages that explain intent. Treat each
+commit like a checkpoint you would be comfortable explaining to a teammate,
+because future you is that teammate.
+
+## Review every step and make the AI explain itself
+
+A habit that changed everything for me is pausing after each change and asking
+the AI to summarize what it just did. Not in vague praise, but in plain terms:
+what functions were added, what behavior changed, what risks it sees.
+
+This does two things. It catches the moments where the AI quietly did something
+you did not ask for, which happens more than people admit. And it forces the work
+into your head. If you cannot follow the summary, that is a signal you are moving
+too fast or the code is too tangled. Slow down until you understand. The summary
+is also a great seed for your commit message and your own notes.
+
+## Why multi agent setups can help
+
+One subtle problem with a single long AI session is context pollution. The model
+starts bending toward whatever assumptions it already made earlier, even the wrong
+ones. It gets attached to a path because that path is already in the window.
+
+A multi agent approach helps here because a fresh agent has fresh eyes. It has
+not been dragged through the earlier wrong turns, so it is less likely to defend
+them. You can hand it a clean brief and ask for an unbiased second opinion on a
+design or a bug. The lack of shared history is the feature, not the bug. It is the
+equivalent of asking a colleague who was not in the meeting to take a look.
+
+## Give the AI good ground to stand on
+
+The best results come when you do some of the engineering upfront and let the AI
+work within those bounds. In this very repo, for example, there is an AGENTS.md
+file that tells any coding agent the stack, the commands, the content model, and
+the conventions. It is the difference between dropping someone into a dark room
+and handing them a map.
+
+Write down your architecture, your build commands, your testing approach, and your
+style rules. Keep them where an agent will read them. The better the ground you
+give the AI, the less it has to guess, and the fewer surprises you will inherit
+later. Good documentation is not just for humans anymore. It is part of your tool
+chain.
+
+## The honest summary
+
+Vibe coding is enough to start. It is not enough to sustain. The moment a project
+matters, the old disciplines come back, and they come back louder: understand
+your tools, test relentlessly, commit carefully, review constantly, and document
+your ground.
+
+Used this way, AI is not a replacement for engineering. It is a force multiplier
+for it. The people who do well with these tools are not the ones who type the
+vaguest prompt. They are the ones who bring the most engineering rigor to the
+table and let the machine handle the parts that rigor makes routine.

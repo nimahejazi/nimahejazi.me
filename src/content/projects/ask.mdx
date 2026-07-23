@@ -1,59 +1,60 @@
 ---
 title: "ask: Terminal LLM Assistant"
 date: 2026-07-13
-excerpt: "A Go CLI that brings an LLM into the terminal: streamed answers, single runnable shell commands copied to the clipboard, gated web search, and local or cloud providers."
-tags: ["Go", "CLI", "LLM", "Terminal"]
+excerpt: "A Python CLI that brings an LLM into the terminal: interactive chat, command extraction, tool support, and local or cloud providers."
+tags: ["Python", "CLI", "LLM", "Terminal"]
 externalUrl: "https://github.com/nimahejazi/ask"
 externalLabel: "Visit GitHub repo"
 ---
 
-A case study on **ask**, a small Go command line tool that puts an LLM in the
-terminal. It answers questions with streamed output, returns a single bare shell
-command you can paste or run, and only reaches for the web when the model is
-actually unsure.
+**ask** is a Python CLI for natural language interaction with LLMs. It supports
+interactive chat mode, quick queries, command extraction, and tool integration.
 
 ## Overview
 
-`ask` started from a simple need: ask a quick question without leaving the shell.
-The design keeps the surface tiny and the behavior predictable:
-
-- Streamed answers for normal questions, with piped input for context.
-- A `-c` mode that returns one bare command, copied to the clipboard, and a `-r`
-  mode that runs it after a y/N confirmation.
-- A `web_search` tool the model can call on its own, so lookups happen only when
-  needed.
-- A provider setup wizard covering local (Ollama, LM Studio) and cloud
-  (Anthropic, OpenAI) endpoints, plus any OpenAI-compatible custom base URL.
-
-## Architecture
-
-The binary is plain Go with no framework. `main.go` wires the CLI flags and the
-provider selection, and the `internal/` packages hold the provider clients, the
-chat loop, and the web-search backend. Configuration resolves from
-`~/.ask/config.yaml` and is overridden by environment variables, with `ask config`
-printing the resolved settings while never echoing secrets.
-
-```text
-stdin / args ──► ask ──► provider (local or cloud)
-                       └──► web_search (model-gated, DuckDuckGo or Brave)
-```
-
-Build and release are handled by GoReleaser, with Homebrew, prebuilt archives,
-and `go install` as the three install paths. Tests run with `go test ./...`.
-
-## Web search
-
-The search tool is gated by the model rather than forced on every call. The
-default backend is keyless DuckDuckGo, and setting `BRAVE_API_KEY` switches to
-Brave. `--no-web` keeps queries entirely local when you want that.
+- Interactive chat mode via `--it`
+- Quick queries from the command line
+- Command extraction with `-c` (outputs bare commands)
+- Tool support via `-t ./tools.sh`
+- Provider configuration on first run: Mock, Ollama, LM Studio, Anthropic, ChatGPT
 
 ## Installation
 
+### Homebrew (macOS)
+
 ```bash
-brew install nima/tap/ask
-# or
-go install github.com/nimahejazi/ask@latest
+brew tap nimahejazi/tap
+brew install nh-ask-cli
 ```
 
-Run `ask init` to configure a provider, then `ask "how do I revert a file in git"`
-to get going.
+You may need `brew trust nimahejazi/tap`.
+
+### pip
+
+```bash
+pip install nh-ask-cli
+```
+
+### From Source
+
+```bash
+git clone https://github.com/nimahejazi/ask.git
+cd ask
+pip install -e .
+```
+
+## Usage
+
+```bash
+# Interactive chat mode
+ask --it
+
+# Quick query
+ask "What is the capital of France?"
+
+# Command mode (extract executable commands)
+ask -c "List files in current directory"
+
+# With tools
+ask -t ./tools.sh "Do something with tools"
+```

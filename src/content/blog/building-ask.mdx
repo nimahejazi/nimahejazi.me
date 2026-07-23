@@ -1,12 +1,37 @@
 ---
 title: "Building ask: An LLM in Your Terminal"
 date: 2026-07-13
-excerpt: "Why I built ask, a Go CLI that streams answers, returns runnable shell commands, and gates web search behind the model's own judgment."
-tags: ["Go", "CLI", "LLM", "Terminal"]
+excerpt: "Why I built ask, a Python CLI with interactive chat, command extraction, tool support, and local or cloud providers."
+tags: ["Python", "CLI", "LLM", "Terminal"]
 ---
 
-`ask` is a small Go command line tool that brings an LLM into the terminal. This
-post covers why it exists and the choices that keep it fast and out of the way.
+`ask` is a Python CLI for natural language interaction with LLMs. This post covers
+why it exists and the choices that keep it fast and out of the way.
+
+## Installation
+
+### Homebrew (macOS)
+
+```bash
+brew tap nimahejazi/tap
+brew install nh-ask-cli
+```
+
+You may need `brew trust nimahejazi/tap`.
+
+### pip
+
+```bash
+pip install nh-ask-cli
+```
+
+### From Source
+
+```bash
+git clone https://github.com/nimahejazi/ask.git
+cd ask
+pip install -e .
+```
 
 ## Why a terminal assistant?
 
@@ -16,52 +41,48 @@ complaining. The friction was leaving the shell, opening a browser, and pasting
 back a command. `ask` collapses that loop to a single line.
 
 The first version did one thing: stream an answer. Two flags made it genuinely
-useful. `-c` returns a single bare command and copies it to the clipboard, and
-`-r` runs that command after a y/N prompt. Together they turn "I wonder how" into
-"it is done" without copy paste gymnastics.
+useful. `-c` returns a single bare command for easy copying, and together with
+the interactive `--it` mode they turn "I wonder how" into "it is done" without
+copy paste gymnastics.
 
 ## Keeping the model local or cloud
 
-A terminal tool should not lock you into one provider. `ask init` launches a
-setup wizard that covers local runtimes (Ollama, LM Studio) and cloud APIs
-(Anthropic, OpenAI), plus any OpenAI-compatible custom endpoint. Settings land in
-`~/.ask/config.yaml`, and environment variables override the file. `ask config`
-prints the resolved configuration but never prints secrets.
+A terminal tool should not lock you into one provider. Run `ask` once to configure
+your preferred LLM: Mock, Ollama, LM Studio, Anthropic, or ChatGPT. Settings are
+stored and can be overridden with environment variables.
 
 ```text
-ask init ──► local (Ollama / LM Studio) | cloud (Anthropic / OpenAI) | custom
+ask ──► local (Ollama / LM Studio) | cloud (Anthropic / OpenAI) | custom
 ```
 
-That split means the same binary works on a laptop with no API key and on a
-machine wired to a cloud model.
+That split means the same CLI works on a laptop with no API key and on a machine
+wired to a cloud model.
 
-## Gated web search
+## Tool support
 
-The naive approach is to search the web on every call. That is slow, leaks
-queries, and rarely helps. Instead, `ask` hands the model a `web_search` tool and
-lets the model decide when it is unsure. Searches fire only when the model asks
-for them. The default backend is keyless DuckDuckGo, `BRAVE_API_KEY` switches to
-Brave, and `--no-web` disables the tool entirely for fully offline use.
+The `-t ./tools.sh` flag lets you pass shell functions as tools. The model calls
+them when appropriate, extending its capabilities without hardcoding logic.
 
 ## Architecture in brief
 
-The code is plain Go. `main.go` parses flags and selects a provider; the
-`internal/` packages hold the provider clients, the chat loop, and the search
-backend. Configuration flows from file to environment variables, and GoReleaser
-produces Homebrew, prebuilt archives, and `go install` releases from one config.
+The code is plain Python. `ask/` holds the CLI entrypoint and provider clients;
+the chat loop handles streaming responses and tool orchestration. Configuration
+is resolved from environment variables, and installation supports Homebrew,
+pip, or editable installs from source.
 
 ```text
 stdin / args ──► ask ──► provider ──► streamed answer or command
-                       └──► web_search (only when the model calls it)
+                        └──► tool execution (when requested via -t)
 ```
 
-Tests run with `go test ./...`, and the whole thing builds with `go build ./...`.
+Tests run with `pytest` or `python -m pytest`, and the package builds with
+`pip install .`.
 
-## Wrapping up
+##Wrapping up
 
 `ask` is deliberately small. It answers, it returns a command you can run, and it
-searches the web only when it has to. The result is a tool that stays in the
+extends itself via tools when needed. The result is a tool that stays in the
 background until you actually need it.
 
 - **Source code:** [github.com/nimahejazi/ask](https://github.com/nimahejazi/ask)
-- **Project page:** [ask write-up](/projects/ask/)
+- **Project page:** [/projects/ask/]

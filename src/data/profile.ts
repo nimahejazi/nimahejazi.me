@@ -275,7 +275,7 @@ export const profile: Profile = {
     website: "https://nimahejazi.me",
   },
   socials: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/nimahejazi" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/nhejazi" },
     { label: "GitHub", href: "https://github.com/nimahejazi" },
   ],
   portrait: "/nima-hejazi-portrait.jpg",

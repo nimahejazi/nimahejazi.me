@@ -66,7 +66,7 @@ export const profile: Profile = {
   name: "Nima Hejazi",
   wordmark: "nima.hejazi",
   availableForWork: true,
-  location: "Chicago, IL",
+  location: "San Francisco, CA",
   headline: "Nima Hejazi",
   pitch:
     "Business Analyst specializing in Agentic AI and process improvement. I " +
@@ -163,6 +163,30 @@ export const profile: Profile = {
   ],
   experience: [
     {
+      title: "MSBA Practicum — Customer Analytics & AI Marketing",
+      company: "My Growth Marketer",
+      location: "San Francisco, CA",
+      period: "Aug 2025 – Jun 2026",
+      highlights: [
+        "Customer analytics and segmentation analysis",
+        "Pricing strategy lifted revenue 24%",
+        "AI lead-generation tool lifted leads 35%",
+      ],
+      tags: ["Customer Analytics", "AI Marketing"],
+    },
+    {
+      title: "IT Support / Systems Administration",
+      company: "UC Law IT Department",
+      location: "San Francisco, CA",
+      period: "Oct 2025 – Apr 2026",
+      highlights: [
+        "Tier 1 & 2 support — hardware, software, network",
+        "Microsoft 365 / SharePoint administration",
+        "Business application and end-user support",
+      ],
+      tags: ["IT Support", "Systems Administration"],
+    },
+    {
       title: "Data & Operations Analyst",
       company: "Santa Rosa Junior College",
       location: "Petaluma, CA",
@@ -178,8 +202,8 @@ export const profile: Profile = {
       tags: ["Business Analytics", "Data Mining"],
     },
     {
-      title: "Freelance Web Developer & Digital Media Consultant",
-      company: "Self-Employed",
+      title: "Web Developer & Digital Media Consultant",
+      company: "Robot Kudos",
       location: "Santa Rosa, CA",
       period: "2020 – 2023",
       highlights: [
@@ -193,8 +217,8 @@ export const profile: Profile = {
     {
       title: "Software Project Lead",
       company: "Gamma Direct",
-      location: "Tehran, Iran",
-      period: "Jul 2006 – Oct 2019",
+      location: "Remote",
+      period: "Jul 2010 – Oct 2019",
       highlights: [
         "Led a 10-person Agile team",
         "Translated financial needs into roadmaps",
@@ -215,6 +239,7 @@ export const profile: Profile = {
         "Data Design & Representation",
         "Big Data",
         "Data Management",
+        "Information, Insight & Impact",
       ],
       certifications: [
         { name: "Lean Six Sigma Green Belt", issuer: "UC Davis", date: "Apr 2026" },
@@ -242,6 +267,18 @@ export const profile: Profile = {
       slug: "lock-scheduler",
     },
     {
+      title: "Sage Functional Health: Pricing Strategy",
+      tags: ["Pricing", "Customer Analytics"],
+      description:
+        "Designed a discriminated pricing model for a functional health practice, increasing profit by 24% while preserving client accessibility.",
+    },
+    {
+      title: "AI Lead & Positioning Engine",
+      tags: ["LLM", "Lead Generation"],
+      description:
+        "Built an LLM-powered tool that ranks a business's web and social presence against stated goals and generates leads.",
+    },
+    {
       title: "PropertySpot: Property Listing Management Platform",
       tags: ["Laravel", "MySQL", "Stripe", "Docker", "Jenkins", "CICD"],
       description:
@@ -250,9 +287,9 @@ export const profile: Profile = {
     },
     {
       title: "ask: Terminal LLM Assistant",
-      tags: ["Go", "CLI", "LLM", "Terminal"],
+      tags: ["Python", "CLI", "LLM", "Terminal"],
       description:
-        "Small Go CLI that brings an LLM into the terminal: streamed answers, single runnable shell commands copied to the clipboard, and model-gated web search across local or cloud providers.",
+        "Python CLI that brings an LLM into the terminal: interactive chat, one-shot command extraction, and tool support across local or cloud providers.",
       slug: "ask",
     },
     {
@@ -271,7 +308,7 @@ export const profile: Profile = {
   ],
   contact: {
     email: "hello@nimahejazi.me",
-    location: "Chicago, IL",
+    location: "San Francisco, CA",
     website: "https://nimahejazi.me",
   },
   socials: [

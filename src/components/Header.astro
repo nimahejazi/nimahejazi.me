@@ -121,7 +121,7 @@ import DarkModeToggle from "./DarkModeToggle.astro";
 <script>
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
-  const setOpen = (open) => {
+  const setOpen = (open: boolean) => {
     menu?.classList.toggle("is-open", open);
     toggle?.setAttribute("aria-expanded", String(open));
     if (menu) menu.inert = !open;

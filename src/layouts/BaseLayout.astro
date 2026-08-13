@@ -90,7 +90,7 @@ const personJsonLd = {
     <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <!-- Structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
 
     <!-- Inter + JetBrains Mono from bunny.net (GDPR compliant) -->
     <link rel="preconnect" href="https://fonts.bunny.net" />

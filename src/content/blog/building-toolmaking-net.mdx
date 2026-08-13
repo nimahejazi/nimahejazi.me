@@ -1,0 +1,94 @@
+---
+title: "Building toolmaking.net: A Home for Small, Sharp Tools"
+date: 2026-08-12
+excerpt: "Why I launched toolmaking.net, a single home for the free, open source utilities I build, starting with ask and a video compressor."
+tags: ["Tools", "Open Source", "CLI"]
+---
+
+I keep building small tools for myself: a CLI that answers questions in the
+terminal, a script that shrinks my video archive. Until now each one lived in
+its own GitHub repo with a README and not much else. This week I launched
+[toolmaking.net](https://toolmaking.net) as the single front door for all of
+them.
+
+## Why a dedicated site?
+
+A repo README is written for someone who already found the repo. It answers
+"how do I build this?" far better than the questions a first-time visitor
+actually has: what does this thing do, what does it look like when I run it,
+and why should I trust it on my machine?
+
+That last question matters more than people admit. Running a stranger's script
+is an act of trust, and a list of flags in Markdown does little to earn it.
+What earns it is seeing the real output, understanding the guardrails, and
+being able to read every line of the source before you execute anything.
+
+So each tool on toolmaking.net gets a proper page instead of a README: a
+one-line install with a copy button, a terminal-style demo showing actual
+output, and the safety behavior spelled out up front. No signup, no docs maze,
+no marketing funnel. The page's only job is to get you from "what is this?" to
+running it in under a minute.
+
+## The philosophy
+
+The about page compresses the whole idea into one line: the best tools are
+small, sharp, and free.
+
+- **Small.** Each tool does one job and stays out of the way when you do not
+  need it. No background daemons, no config sprawl, no accounts to create
+  before the thing works.
+- **Sharp.** Precision-engineered to do that one job well, inside your
+  terminal and your environment, rather than being a platform that wants to
+  become your environment.
+- **Free.** Open source, released so you can read every line before you run
+  it. No tracking of your work, no paywalls, no feature tiers.
+
+These are utilities built to be depended on, not products built to be sold.
+That constraint shapes everything on the site: if a tool needs an account or a
+subscription to be useful, it does not belong there.
+
+## What's there now
+
+Two tools are live at launch.
+
+**ask** is the featured one, currently at v0.2.15, and it already has its own
+[write-up](/blog/building-ask/) here. It puts an LLM in your terminal, so a
+question like "how do I list files by size?" never requires leaving the shell:
+
+```text
+$ ask "how do I list files by size?"
+ls -lhS
+```
+
+It runs against local providers (Ollama, LM Studio) or cloud ones (Anthropic,
+OpenAI), extracts single commands for quick copying, and can call your own
+shell functions as tools when the model needs to reach beyond its training.
+
+**Video Compressor** is a small Python script that re-encodes videos to
+H.265/HEVC for dramatically smaller files. A typical run looks like this:
+
+```text
+$ python3 compress_videos.py ~/Movies
+[2/5] Compressing: holiday_footage.mov (3.2 GB, 12:34)
+OK: 3.2 GB → 1.1 GB (saved 2.1 GB, 65.6%) → holiday_footage[comp].mp4
+```
+
+The interesting part is what it refuses to do. Originals stay untouched until
+each encoding is verified, and if the output is not at least 5% smaller, it is
+discarded rather than replacing a perfectly good file with a worse one. A
+`--dry-run` flag previews exactly what would happen without encoding anything,
+and the `hvc1` tag keeps the results playable in QuickTime and across macOS.
+Install is one `curl` plus ffmpeg.
+
+## What's next
+
+The catalog is deliberately short. A tool gets a page only after I have used
+it long enough to trust it myself, which means the site will grow slowly and
+on purpose. There are a few candidates already sitting in my dotfiles and
+scripts folders, but they ship when they earn it.
+
+If one of the tools is useful to you, the source is linked from every page,
+and issues and ideas are welcome there.
+
+- **Site:** [toolmaking.net](https://toolmaking.net)
+- **Source code:** [github.com/nimahejazi](https://github.com/nimahejazi)

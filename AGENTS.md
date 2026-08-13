@@ -16,7 +16,7 @@ Astro 5 personal site (static, deployed to Vercel). MDX content collections, Tai
 - Homepage content (hero, about, experience, education, project cards) lives in the typed data file `src/data/profile.ts`, not in the components.
 - Interactive components in MDX are **Preact** islands (`.tsx` with a `client:*` directive, e.g. `<AlphaBetaVisualizer client:load />`). `tsconfig.json` sets `jsxImportSource: preact` — write Preact, not React.
 - TeX math works in MDX (remark-math + rehype-katex in `astro.config.mjs`); KaTeX CSS is imported only by `src/layouts/ArticleLayout.astro`, so math renders styled on article pages only.
-- Per-post OG image: set `ogImage` in frontmatter. OG images are committed static files under `public/`, generated manually with `node scripts/build-og.mjs` — not part of the build.
+- Per-post OG image: set `ogImage` in frontmatter. OG images are committed static files under `public/`, generated manually with `npm run build:og` (edit `scripts/build-og.mjs` per card) — not part of the build.
 - `resources/` is offline source material (resume templates, case-study PDFs) and is **not served**; linkable assets must go in `public/`.
 
 ## Conventions & gotchas

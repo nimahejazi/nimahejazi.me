@@ -1,4 +1,6 @@
 ---
+import Analytics from "@vercel/analytics/astro";
+
 interface Props {
   title?: string;
   description?: string;
@@ -126,6 +128,9 @@ const personJsonLd = {
         />
       )
     }
+
+    <!-- Vercel Web Analytics; collects only in Vercel production -->
+    <Analytics />
   </head>
   <body
     class="min-h-dvh bg-cream-100 text-cream-900 antialiased dark:bg-cream-950 dark:text-cream-200"

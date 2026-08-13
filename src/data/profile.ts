@@ -66,7 +66,7 @@ export const profile: Profile = {
   name: "Nima Hejazi",
   wordmark: "nima.hejazi",
   availableForWork: true,
-  location: "San Francisco, CA",
+  location: "Chicago, IL",
   headline: "Nima Hejazi",
   pitch:
     "Business Analyst specializing in Agentic AI and process improvement. I " +
@@ -308,7 +308,7 @@ export const profile: Profile = {
   ],
   contact: {
     email: "hello@nimahejazi.me",
-    location: "San Francisco, CA",
+    location: "Chicago, IL",
     website: "https://nimahejazi.me",
   },
   socials: [

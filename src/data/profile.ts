@@ -157,9 +157,9 @@ export const profile: Profile = {
     },
   ],
   stats: [
-    { label: "Education", value: "MS in Business Analytics", sub: "UC Davis" },
-    { label: "Specialty", value: "Agentic AI" },
-    { label: "Also builds", value: "Software & AI" },
+    { label: "Processing time cut", value: "98%", sub: "Workflow automation, SRJC" },
+    { label: "Revenue lift", value: "24%", sub: "Pricing strategy" },
+    { label: "Lead growth", value: "35%", sub: "AI lead-gen tool" },
   ],
   experience: [
     {

@@ -7,6 +7,7 @@ Astro 5 personal site (static, deployed to Vercel). MDX content collections, Tai
 - `npm run check` (`astro check`) is the **only** type/lint gate — there is no separate `tsc` script, ESLint, Prettier, or Biome config.
 - `npm test` runs `vitest run`, but the repo has **zero test files**; it passes vacuously. Add tests plus a vitest config if you need them.
 - `dev` / `build` / `preview` are the standard Astro scripts; `build` outputs to `dist/`.
+- CI (`.github/workflows/ci.yml`) runs `check` + `build` on PRs and pushes to `main`; keep it green before pushing — `main` auto-deploys.
 
 ## Content
 

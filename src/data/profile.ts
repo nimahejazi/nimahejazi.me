@@ -69,10 +69,10 @@ export const profile: Profile = {
   location: "Chicago, IL",
   headline: "Nima Hejazi",
   pitch:
-    "Business Analyst specializing in Agentic AI and process improvement. I " +
-    "turn operational noise into clear requirements, KPI dashboards, and " +
-    "automated workflows, and I can build the software and AI behind them " +
-    "when it helps.",
+    "Business analyst and software engineer specializing in agentic AI and " +
+    "process improvement. I turn messy operations into clear requirements, " +
+    "KPI dashboards, and automated workflows, and I build the software and " +
+    "AI behind them.",
   about:
     "I'm a business analyst who connects stakeholders, requirements, and data " +
     "to decisions. I map workflows, define KPIs, and translate business needs " +

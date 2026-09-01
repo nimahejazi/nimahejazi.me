@@ -60,7 +60,8 @@ and simply log in local development. Profile photos upload through
 
 Shipping by hand is how config drift starts. A `Jenkinsfile` defines the path
 from commit to production: build the image, run the test suite (PHPUnit, against
-an in-memory SQLite database for speed), and deploy. Per-environment `.env` files
+a containerized MySQL database so CI exercises the same engine as production),
+and deploy. Per-environment `.env` files
 keep secrets out of the image.
 
 ```text
@@ -80,5 +81,6 @@ The result is a platform that builds, tests, and deploys the same way everywhere
 Laravel and MySQL for the domain, Docker for a consistent runtime, and Jenkins for
 a pipeline I don't have to think about.
 
+- **Live site:** [propertyspot.net](https://propertyspot.net)
 - **Source code:** [github.com/nimahejazi/propertyspot](https://github.com/nimahejazi/propertyspot)
 - **Project page:** [PropertySpot write-up](/projects/propertyspot/)

@@ -3,14 +3,16 @@ title: "PropertySpot: Property Listing Management Platform"
 date: 2023-06-15
 excerpt: "A full-stack property listing platform on Laravel 8.x and MySQL, with role-based access control, Stripe payments, email verification, Docker packaging, and a Jenkins CI/CD pipeline."
 tags: ["Laravel", "MySQL", "Stripe", "Docker", "Jenkins", "CICD"]
-externalUrl: "https://github.com/nimahejazi/propertyspot"
-externalLabel: "Visit GitHub repo"
+externalUrl: "https://propertyspot.net"
+externalLabel: "Visit propertyspot.net"
 ---
 
 A case study on **PropertySpot**, a full-stack property listing platform I built
 to manage real-estate listings end to end, from publishing and access control
 through payments and email verification, and ship it reliably with containers
-and a CI/CD pipeline.
+and a CI/CD pipeline. It runs in production at
+[propertyspot.net](https://propertyspot.net), and the source is on
+[GitHub](https://github.com/nimahejazi/propertyspot).
 
 ## Overview
 
@@ -27,7 +29,7 @@ batteries-included stack rather than something bespoke:
 
 The application is a **Laravel 8.x** monolith backed by **MySQL**. Migrations in
 `database/migrations` keep the schema versioned, and the test suite runs against
-an in-memory SQLite database for speed.
+a containerized MySQL database so CI exercises the same engine as production.
 
 Deployment is container-first. The production image pairs **nginx** with
 **php-fpm** via `Dockerfile`, with `Dockerfile-dev` and a `docker-compose-dev.yml`
@@ -58,9 +60,19 @@ policies. Users carry a `user` or `admin` role:
 
 Listings are monetized through **Stripe**, with webhooks handled at
 `/stripe/payment-hook`. **Email verification**, password resets, and
-notifications go out over SMTP (Sendinblue) and simply log locally in
-development. Profile photos upload through `/users/profile-photo`, and public
-listing pages render at `/{slug}`.
+notifications go out over SMTP (Brevo, formerly Sendinblue) and simply log
+locally in development. Profile photos upload through `/users/profile-photo`,
+and public listing pages render at `/{slug}`.
+
+## Photo pipeline
+
+Listing photos live in a dedicated image API shipped as a private Composer
+package (`rk-image-api`) and wired into the app through its config. It exposes
+token-authenticated upload, rename, delete, and reorder endpoints — up to 50
+photos per listing — with per-owner middleware guarding every request. Files are
+written straight to the web-served image directory rather than through a
+storage abstraction, and the server rejects images below a minimum width, so
+tiny or corrupt uploads never reach a listing page.
 
 ## Front-end
 

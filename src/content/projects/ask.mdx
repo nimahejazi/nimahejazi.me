@@ -1,14 +1,15 @@
 ---
 title: "ask: Terminal LLM Assistant"
 date: 2026-07-13
-excerpt: "A Python CLI that brings an LLM into the terminal: interactive chat, command extraction, tool support, and local or cloud providers."
+excerpt: "A Python CLI that brings an LLM into the terminal: interactive chat, command extraction, tool support, personal notes it consults and cites, and local or cloud providers."
 tags: ["Python", "CLI", "LLM", "Terminal"]
 externalUrl: "https://github.com/nimahejazi/ask"
 externalLabel: "Visit GitHub repo"
 ---
 
 **ask** is a Python CLI for natural language interaction with LLMs. It supports
-interactive chat mode, quick queries, command extraction, and tool integration.
+interactive chat mode, quick queries, command extraction, tool integration, and
+personal notes the assistant consults automatically.
 
 ## Overview
 
@@ -16,7 +17,10 @@ interactive chat mode, quick queries, command extraction, and tool integration.
 - Quick queries from the command line
 - Command extraction with `-c` (outputs bare commands)
 - Tool support via `-t ./tools.sh`
+- Personal notes in `~/.ask-notes/*.md`: consulted by default, cited inline
+- Notes-only mode via `-n` (answer strictly from notes) and `-N` (skip notes)
 - Provider configuration on first run: Mock, Ollama, LM Studio, Anthropic, ChatGPT
+- Fully local with Ollama or LM Studio: chat, embeddings, and the search index run on your machine
 
 ## Installation
 
@@ -57,4 +61,24 @@ ask -c "List files in current directory"
 
 # With tools
 ask -t ./tools.sh "Do something with tools"
+
+# Notes-only mode (answer strictly from your personal notes)
+ask -n "what's six sigma DMIAC?"
+
+# Skip notes for this query
+ask -N "What is the capital of France?"
+
+# Manage notes
+ask notes add "Deploy Checklist\nrun kubectl first #ops"
+ask notes search "kubectl rollout"
 ```
+
+## Notes
+
+Notes are plain markdown files in `~/.ask-notes/` (title is the first line,
+inline `#tags` allowed). The assistant gets `search_notes` / `read_note` /
+`save_note` tools and cites them as `[note: Title](file://path)`. Notes are
+embedded for semantic search when the provider supports it, with keyword
+fallback otherwise. The markdown files are the source of truth; the index is a
+derived sqlite cache rebuilt lazily. Read-only note tools run without
+confirmation; `save_note` still asks. AI cannot delete notes.

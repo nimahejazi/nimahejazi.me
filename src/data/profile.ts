@@ -289,7 +289,7 @@ export const profile: Profile = {
       title: "ask: Terminal LLM Assistant",
       tags: ["Python", "CLI", "LLM", "Terminal"],
       description:
-        "Python CLI that brings an LLM into the terminal: interactive chat, one-shot command extraction, and tool support across local or cloud providers.",
+        "Python CLI that brings an LLM into the terminal: interactive chat, one-shot command extraction, tool support, and personal markdown notes the assistant consults and cites, with notes-only mode. Fully local with Ollama or LM Studio.",
       slug: "ask",
     },
     {

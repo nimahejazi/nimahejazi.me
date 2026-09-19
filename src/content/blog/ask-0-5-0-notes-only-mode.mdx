@@ -1,0 +1,65 @@
+---
+title: "ask 0.5.0: Notes-Only Mode"
+date: 2026-09-19
+excerpt: "Release notes for ask v0.5.0: answer strictly from your personal notes with -n, frictionless read-only tools, and spinner feedback. Fully local with Ollama or LM Studio."
+tags: ["Python", "CLI", "LLM", "Terminal"]
+---
+
+[ask](https://github.com/nimahejazi/ask) 0.5.0 is out. The headline: the
+assistant can now answer **strictly from your personal notes**, refusing to fill
+gaps with general knowledge.
+
+## The problem with always-on notes
+
+Since 0.3.x, `ask` consults your notes automatically. But when your notes do
+not contain the answer, the model silently reaches for general knowledge.
+Sometimes that is what you want. Sometimes you specifically want to know *what
+did I write down about this?* For those moments, a confident general-knowledge
+answer is worse than no answer, because it hides the fact that your notes came
+up empty.
+
+## Notes-only mode
+
+```bash
+ask -n "what's six sigma DMIAC?"
+```
+
+The assistant must search notes first, read promising matches, and cite them
+inline as `[note: Title](file://path)`. If nothing relevant exists, it says so
+and stops. `-n` is mutually exclusive with `-N` / `--no-notes`, which skips
+notes entirely for a query. Three modes, one character each:
+
+| Flag | Behavior |
+| --- | --- |
+| (none) | Notes consulted when relevant, general knowledge allowed |
+| `-n` | Notes only, no general knowledge |
+| `-N` | Notes ignored for this query |
+
+## Reads are free, writes ask
+
+Tool confirmation was all-or-nothing: every `search_notes` and `read_note`
+prompted for a y/N even though they only read local files. The new policy
+follows the repo principle "AI writes, humans delete, humans gate writes":
+
+- `search_notes` and `read_note` run without prompting
+- `save_note` still asks before touching a file
+
+A notes-heavy query used to interrupt three or four times. Now it reads freely
+and only pauses when it wants to persist something.
+
+## Fully local
+
+With Ollama or LM Studio everything runs on your machine: chat, embeddings, and
+the sqlite index at `~/.ask-notes/.index.db`. The markdown files remain the
+source of truth. After one-time model downloads, no network access is needed at
+all.
+
+## Install
+
+```bash
+brew tap nimahejazi/tap
+brew install nh-ask-cli
+```
+
+or `pip install nh-ask-cli`. Full release notes:
+[v0.5.0 on GitHub](https://github.com/nimahejazi/ask/releases/tag/v0.5.1)

@@ -45,7 +45,8 @@ const essayCard = textSvg([
 
 const fallbackCard = textSvg([
   { x: 92, y: 250, text: "Nima Hejazi", font: "Helvetica, Arial, sans-serif", size: 84, weight: 700, fill: LIGHT },
-  { x: 94, y: 320, text: "Business Analyst + Agentic AI", font: "Helvetica, Arial, sans-serif", size: 34, weight: 600, fill: ACCENT },
+  { x: 94, y: 320, text: "Solutions Engineer · AI, Automation &amp; Data", font: "Helvetica, Arial, sans-serif", size: 34, weight: 600, fill: ACCENT },
+  { x: 94, y: 372, text: "I build software people actually use.", font: "Helvetica, Arial, sans-serif", size: 30, weight: 400, fill: MUTED },
   { x: 94, y: 560, text: "nimahejazi.me", font: "'JetBrains Mono', monospace", size: 28, weight: 500, fill: MUTED },
 ]);
 

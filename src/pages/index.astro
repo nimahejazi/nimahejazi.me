@@ -13,17 +13,17 @@ import Footer from "../components/Footer.astro";
 ---
 
 <BaseLayout
-  title="Nima Hejazi | Business Analyst & AI"
-  description={profile.pitch}
+  title="Nima Hejazi | Solutions Engineer: AI, Automation & Data"
+  description={profile.metaDescription}
 >
   <Header />
   <main class="mx-auto max-w-6xl px-5 lg:px-10">
     <Hero />
-    <About />
-    <Experience />
-    <Education />
-    <Projects />
-    <Contact />
+    <Projects number="01" />
+    <Experience number="02" />
+    <About number="03" />
+    <Education number="04" />
+    <Contact number="05" />
   </main>
   <Footer />
 </BaseLayout>

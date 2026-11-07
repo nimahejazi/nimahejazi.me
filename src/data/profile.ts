@@ -1,3 +1,6 @@
+// Homepage content. Every fact and figure here must match Nima's resume
+// (~/Codes/job_seeking/resume_data.js). Do not add figures that can't be backed up.
+
 export interface SocialLink {
   label: string;
   href: string;
@@ -8,9 +11,8 @@ export interface ExperienceItem {
   company: string;
   location?: string;
   period: string;
-  description?: string;
+  founder?: boolean;
   highlights: (string | { text: string; href: string })[];
-  tags?: string[];
 }
 
 export interface EducationItem {
@@ -18,8 +20,8 @@ export interface EducationItem {
   degree: string;
   institution: string;
   location?: string;
-  description?: string;
-  courses?: string[];
+  honors?: string[];
+  note?: string;
   certifications?: { name: string; issuer: string; date: string }[];
 }
 
@@ -30,6 +32,11 @@ export interface ProjectItem {
   href?: string;
   archived?: boolean;
   slug?: string;
+  featured?: boolean;
+  image?: string;
+  imageAlt?: string;
+  /** "cover" crops to fill (site screenshots); "contain" shows the whole image (app UI figures). */
+  imageFit?: "cover" | "contain";
 }
 
 export interface SkillGroup {
@@ -48,10 +55,11 @@ export interface Profile {
   wordmark: string;
   availableForWork: boolean;
   location: string;
+  role: string;
   headline: string;
   pitch: string;
-  about: string;
-  stack: { analysis: string[]; ai: string[]; data: string[]; engineering: string[] };
+  metaDescription: string;
+  story: string[];
   skills: SkillGroup[];
   stats: { label: string; value: string; sub?: string }[];
   experience: ExperienceItem[];
@@ -60,6 +68,7 @@ export interface Profile {
   contact: ContactInfo;
   socials: SocialLink[];
   portrait: string;
+  resume: string;
 }
 
 export const profile: Profile = {
@@ -67,248 +76,188 @@ export const profile: Profile = {
   wordmark: "nima.hejazi",
   availableForWork: true,
   location: "Chicago, IL",
-  headline: "Nima Hejazi",
+  role: "Solutions Engineer · AI, Automation & Data",
+  headline: "I build software people actually use",
   pitch:
-    "Business analyst and software engineer specializing in agentic AI and " +
-    "process improvement. I turn messy operations into clear requirements, " +
-    "KPI dashboards, and automated workflows, and I build the software and " +
-    "AI behind them.",
-  about:
-    "I'm a business analyst who connects stakeholders, requirements, and data " +
-    "to decisions. I map workflows, define KPIs, and translate business needs " +
-    "into automated pipelines and AI-assisted tooling. Because I can also " +
-    "build the software and models behind the analysis, the distance between " +
-    "insight and delivery stays short.",
-  stack: {
-    analysis: ["KPI Analysis", "A/B Testing", "Statistical Analysis", "Market Research", "ETL", "Data Pipelines"],
-    ai: ["LLMs", "Agentic AI", "Prompt Engineering", "AI Integration", "Machine Learning"],
-    data: ["Python", "SQL", "Pandas", "NumPy", "R"],
-    engineering: ["TypeScript", "React", "Node", "Cloud (AWS/Azure)", "CI/CD", "Docker"],
-  },
+    "Three-time founder with an MS in Business Analytics. I sit down with the " +
+    "people who have the problem, work out what they actually need, build it, " +
+    "and stay until it's adopted, whether that's a scheduling system a campus " +
+    "police team relies on or an AI app that answers only from your own notes.",
+  metaDescription:
+    "Nima Hejazi: solutions engineer and three-time founder who builds AI, " +
+    "automation, and data tools that people actually adopt.",
+  story: [
+    "I started my first business in Tehran in 2008: building websites, hosting, " +
+      "and IT for more than 50 small businesses over 11 years, mostly on my own. " +
+      "That meant selling the work, building it, and supporting it afterward.",
+    "After moving to the US in 2019, I launched PropertySpot, filming property " +
+      "tours for real estate agents and building a self-serve listing-site tool. " +
+      "Then I went back to school: a BS in Business Administration with a CS " +
+      "minor (summa cum laude), and an MS in Business Analytics at UC Davis.",
+    "Along the way I built Lock Scheduler at Santa Rosa Junior College without " +
+      "anyone asking, and now I'm building NovoMemo, an AI notes app. I'm looking " +
+      "for a team where I can do the same thing at scale: understand the customer, " +
+      "build the solution, and make it stick.",
+  ],
   skills: [
     {
-      category: "Business & Communication",
-      items: [
-        "Stakeholder Communication",
-        "Consulting",
-        "Agile",
-        "Decision Support",
-        "Price Setting",
-        "Insight Translation",
-        "Executive Summaries",
-        "Public Speaking",
-        "Advanced Excel",
-      ],
+      category: "AI & Data",
+      items: ["RAG", "LLM APIs (OpenAI, OpenRouter)", "Embeddings", "pgvector", "Python", "SQL", "R", "ETL & data validation"],
     },
     {
-      category: "Analytics & Statistics",
-      items: [
-        "A/B Testing",
-        "KPI Analysis",
-        "Data Cleaning",
-        "Statistical Analysis",
-        "Machine Learning",
-        "Causal Inference",
-        "Market Research",
-        "ETL",
-        "Data Pipelines",
-      ],
+      category: "Web & Apps",
+      items: ["TypeScript", "React", "React Native (Expo)", "PHP / Laravel", "ASP", "Supabase", "PostgreSQL", "MySQL", "SQLite"],
     },
     {
-      category: "Data & AI",
-      items: [
-        "Dashboards & Reporting",
-        "Data Modeling",
-        "AI Integration",
-        "Prompt Engineering",
-        "LLMs",
-        "Agentic AI",
-        "SciPy",
-        "NumPy",
-        "Pandas",
-        "Scikit-learn",
-        "TensorFlow",
-        "PyTorch",
-        "R",
-      ],
+      category: "Cloud & Tools",
+      items: ["AWS", "Cloudflare", "Git / GitHub", "Docker", "Stripe", "RevenueCat", "wxPython"],
     },
     {
-      category: "Software Engineering",
-      items: [
-        "JavaScript",
-        "TypeScript",
-        "Python",
-        "SQL",
-        "PHP",
-        "Node.js",
-        "PostgreSQL",
-        "MySQL",
-        "RESTful APIs",
-        "React",
-        "Laravel",
-        "Express",
-        "NoSQL",
-        "MongoDB",
-        "CI/CD",
-        "Docker",
-        "Supabase",
-        "Cloud (AWS/Azure)",
-      ],
+      category: "Working with people",
+      items: ["Requirements gathering", "Stakeholder interviews", "Client sales", "Rollout & training", "Lean Six Sigma (Green Belt)", "English & Persian"],
     },
   ],
   stats: [
-    { label: "Processing time cut", value: "98%", sub: "Workflow automation, SRJC" },
-    { label: "Revenue lift", value: "24%", sub: "Pricing strategy" },
-    { label: "Lead growth", value: "35%", sub: "AI lead-gen tool" },
+    { label: "Scheduling errors", value: "−94%", sub: "Lock Scheduler, SRJC" },
+    { label: "Weekly effort", value: "10h → 15m", sub: "Same project" },
+    { label: "Clients served", value: "50+", sub: "11 years as a founder" },
   ],
   experience: [
     {
-      title: "MSBA Practicum — Customer Analytics & AI Marketing",
-      company: "My Growth Marketer",
-      location: "San Francisco, CA",
-      period: "Aug 2025 – Jun 2026",
+      title: "Founder & Developer",
+      company: "Imaginovo (NovoMemo)",
+      location: "Chicago, IL",
+      period: "Aug 2026 – Present",
+      founder: true,
       highlights: [
-        "Customer analytics and segmentation analysis",
-        "Pricing strategy lifted revenue 24%",
-        "AI lead-generation tool lifted leads 35%",
+        "Designed and launched NovoMemo, a cross-platform AI notes app (TypeScript, Expo/React Native, Supabase) that answers questions only from a user's own notes, with clickable source citations.",
+        "Built the retrieval pipeline end to end: heading-aware chunking, OpenAI embeddings in Postgres/pgvector, and a relevance threshold that answers \"not found\" instead of guessing.",
+        "Shipped live subscription billing and offline-first sync in about 12 weeks, working solo and directing AI coding agents (Claude Code) through a spec- and test-driven workflow.",
+        { text: "Read the NovoMemo case study", href: "/projects/novomemo/" },
       ],
-      tags: ["Customer Analytics", "AI Marketing"],
     },
     {
-      title: "IT Support / Systems Administration",
-      company: "UC Law IT Department",
+      title: "IT Support (part-time)",
+      company: "UC Law San Francisco, IT Department",
       location: "San Francisco, CA",
       period: "Oct 2025 – Apr 2026",
       highlights: [
-        "Tier 1 & 2 support — hardware, software, network",
-        "Microsoft 365 / SharePoint administration",
-        "Business application and end-user support",
+        "Provided Tier 1 and 2 support for hardware, software, and network issues while completing my MS.",
+        "Supported Microsoft 365 and SharePoint administration and business applications for staff and faculty.",
       ],
-      tags: ["IT Support", "Systems Administration"],
     },
     {
-      title: "Data & Operations Analyst",
+      title: "Administrative Assistant III · A&R Specialist I · Work Coordinator",
       company: "Santa Rosa Junior College",
-      location: "Petaluma, CA",
-      period: "Aug 2023 – Jul 2025",
+      location: "Santa Rosa & Petaluma, CA",
+      period: "Apr 2022 – Aug 2025",
       highlights: [
-        "Cut processing time 98%",
-        "Reduced scheduling errors 94%",
-        "Built ETL pipelines and executive dashboards",
-        "KPI and leadership reporting",
-        "Mapped and automated workflows into SOPs",
-        { text: "Requirements gathering — see case study", href: "/projects/lock-scheduler/" },
+        "Built Lock Scheduler on my own initiative: a Python/SQLite desktop app replacing a 16-year-old manual Excel process that campus police, custodial, and maintenance teams relied on.",
+        "Interviewed all three stakeholder groups, shipped in 6 weeks, and ran it alongside the manual process before cutover, cutting scheduling errors 94% and weekly effort from 10 hours to 15 minutes.",
+        { text: "Read the Lock Scheduler case study", href: "/projects/lock-scheduler/" },
       ],
-      tags: ["Business Analytics", "Data Mining"],
     },
     {
-      title: "Web Developer & Digital Media Consultant",
-      company: "Robot Kudos",
-      location: "Santa Rosa, CA",
-      period: "2020 – 2023",
+      title: "Founder",
+      company: "PropertySpot (Robot Kudos)",
+      location: "California",
+      period: "2020 – 2021",
+      founder: true,
       highlights: [
-        "Elicited and translated client requirements",
-        "Agile, end-to-end delivery",
-        "Automated client workflows",
-        "Data and API integrations",
+        "Shot and edited about 100 property tour videos for real estate agents and paired each with a listing website, generating about $20K in revenue.",
+        "Built propertyspot.net (Laravel, React, MySQL), a self-serve tool that lets agents publish a listing site in under 20 minutes, with MLS/address APIs and built-in lead capture.",
       ],
-      tags: ["Client Collaboration", "End-to-End Ownership"],
     },
     {
-      title: "Software Project Lead",
+      title: "Founder",
       company: "Gamma Direct",
-      location: "Remote",
-      period: "Jul 2010 – Oct 2019",
+      location: "Tehran, Iran",
+      period: "2008 – 2019",
+      founder: true,
       highlights: [
-        "Led a 10-person Agile team",
-        "Translated financial needs into roadmaps",
-        "Reporting and compliance modules",
-        "Role-based access controls",
+        "Ran a web, hosting, and IT services business on my own for 11 years, handling sales, delivery, and support for 50+ small-business clients.",
+        "Built a data pipeline for Donya-e-Eqtesad, Iran's leading financial daily, converting raw stock-market data into print-ready tables.",
+        "Developed a custom ASP financial-news membership platform and redeployed it for multiple clients, plus a referral marketing site that paid users commission for bringing in clients.",
       ],
-      tags: ["Team Leadership", "Compliance Systems"],
     },
   ],
   education: [
     {
       institution: "University of California, Davis",
-      degree: "Master of Science, Business Analytics",
-      period: "June 2026",
+      degree: "MS, Business Analytics",
+      period: "Jun 2026",
       location: "Davis, CA",
-      courses: [
-        "Machine Learning & AI",
-        "Data Design & Representation",
-        "Big Data",
-        "Data Management",
-        "Information, Insight & Impact",
-      ],
-      certifications: [
-        { name: "Lean Six Sigma Green Belt", issuer: "UC Davis", date: "Apr 2026" },
-      ],
+      honors: ["GPA 3.75"],
+      note: "Practicum with My Growth Marketer: led pricing strategy for a client business and presented recommendations to the team.",
+      certifications: [{ name: "Lean Six Sigma Green Belt", issuer: "UC Davis", date: "Apr 2026" }],
     },
     {
       institution: "Sonoma State University",
-      degree: "Bachelor of Science, Business Administration; Minor: Computer Science",
-      period: "December 2024",
+      degree: "BS, Business Administration (Management) · Minor, Computer Science",
+      period: "Dec 2024",
       location: "Rohnert Park, CA",
-      courses: [
-        "Database Management System Design",
-        "Software Design & Development",
-        "Business Data Analysis & Interpretation",
-        "Programming Concepts 2",
-      ],
+      honors: ["Summa Cum Laude", "GPA 4.0", "Presidential Scholarship", "Beta Gamma Sigma", "Phi Theta Kappa"],
     },
   ],
   projects: [
     {
-      title: "Lock Scheduler: Automated Class Scheduling System for SRJC",
-      tags: ["Python", "SQLite", "wxPython", "Automation", "Process Improvement"],
+      title: "NovoMemo: AI notes that answer only from what you wrote",
+      tags: ["RAG", "pgvector", "Supabase", "Expo", "TypeScript"],
       description:
-        "Desktop app (Python, SQLite, wxPython) that replaced a manual, multi-source Excel scheduling workflow at Santa Rosa Junior College — cutting scheduling errors by 94% and weekly effort from 10 hours to 15 minutes.",
+        "A markdown notes app you can ask questions. Answers come only from your own notes, with a citation that jumps to the exact passage, and it says \"not found\" rather than guessing. Built solo with live billing and offline sync.",
+      slug: "novomemo",
+      featured: true,
+      image: "/images/projects/novomemo.jpg",
+      imageAlt: "NovoMemo landing page: \"Your notes, with answers.\"",
+      imageFit: "cover",
+    },
+    {
+      title: "Lock Scheduler: replacing a 16-year manual process",
+      tags: ["Python", "SQLite", "wxPython", "Process improvement"],
+      description:
+        "A desktop app I built unprompted at Santa Rosa Junior College for the police, custodial, and maintenance teams. Scheduling errors fell 94% and weekly effort went from 10 hours to 15 minutes.",
       slug: "lock-scheduler",
+      featured: true,
+      image: "/images/lock-scheduler-fig3.png",
+      imageAlt: "Lock Scheduler desktop interface showing the course schedule list and the Add Course dialog.",
+      imageFit: "contain",
     },
     {
-      title: "Sage Functional Health: Pricing Strategy",
-      tags: ["Pricing", "Customer Analytics"],
+      title: "PropertySpot: listing websites in under 20 minutes",
+      tags: ["Laravel", "React", "MySQL", "Stripe"],
       description:
-        "Designed a discriminated pricing model for a functional health practice, increasing profit by 24% while preserving client accessibility.",
-    },
-    {
-      title: "AI Lead & Positioning Engine",
-      tags: ["LLM", "Lead Generation"],
-      description:
-        "Built an LLM-powered tool that ranks a business's web and social presence against stated goals and generates leads.",
-    },
-    {
-      title: "PropertySpot: Property Listing Management Platform",
-      tags: ["Laravel", "MySQL", "Stripe", "Docker", "Jenkins", "CICD"],
-      description:
-        "Full-stack property listing platform on Laravel 8.x and MySQL with role-based access control, Stripe payments, and email verification. Containerized with Docker (nginx + php-fpm), shipped via a Jenkins CI/CD pipeline, and fronted by a React-powered interactive UI. Live at propertyspot.net.",
+        "A self-serve tool for real estate agents to publish a dedicated listing site, born from my own business filming about 100 property tours. Includes MLS/address lookups and built-in lead capture.",
       slug: "propertyspot",
+      featured: true,
+      image: "/images/projects/propertyspot.jpg",
+      imageAlt: "PropertySpot.net landing page: \"Create your property website under 20 minutes.\"",
+      imageFit: "cover",
     },
     {
-      title: "ask: Terminal LLM Assistant",
-      tags: ["Python", "CLI", "LLM", "Terminal"],
+      title: "toolmaking.net & ask",
+      tags: ["Python", "CLI", "LLM", "Open source"],
       description:
-        "Python CLI that brings an LLM into the terminal: interactive chat, one-shot command extraction, tool support, and personal markdown notes the assistant consults and cites, with notes-only mode. Fully local with Ollama or LM Studio.",
+        "A home for the free tools I build for myself, including ask, a terminal AI assistant that works with local models or an API key and can answer from your own notes.",
       slug: "ask",
     },
     {
-      title: "Video Compression Tool",
-      tags: ["Python", "H.265/HEVC", "FFmpeg"],
-      description:
-        "Python utility that re-encodes video to H.265/HEVC for major file-size savings at preserved quality, with batch processing, progress tracking, and safe handling of edge cases such as interrupted conversions.",
-    },
-    {
-      title: "nimahejazi.me Personal Website",
+      title: "nimahejazi.me",
       tags: ["Astro", "Tailwind CSS", "MDX"],
       description:
-        "Static personal site (Astro 5, CSS-first Tailwind v4, MDX) with GitHub + Vercel auto-deploy on every push to main.",
+        "This site: static Astro 5 with Tailwind v4 and MDX, deployed to Vercel on every push to main.",
       slug: "nimahejazi-me",
+    },
+    {
+      title: "Video Compression Tool",
+      tags: ["Python", "FFmpeg", "H.265"],
+      description:
+        "Python utility that batch re-encodes video to H.265/HEVC for smaller files at the same quality, with progress tracking and safe handling of interrupted conversions.",
+      archived: true,
     },
   ],
   contact: {
     email: "hello@nimahejazi.me",
-    location: "Chicago, IL",
+    location: "Chicago, IL · open to relocation",
     website: "https://nimahejazi.me",
   },
   socials: [
@@ -316,4 +265,5 @@ export const profile: Profile = {
     { label: "GitHub", href: "https://github.com/nimahejazi" },
   ],
   portrait: "/nima-hejazi-portrait.jpg",
+  resume: "/nima-hejazi-resume.pdf",
 };

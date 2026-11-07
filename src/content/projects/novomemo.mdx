@@ -1,0 +1,92 @@
+---
+title: "NovoMemo: AI Notes That Answer Only From What You Wrote"
+date: 2026-11-06
+excerpt: "A cross-platform markdown notes app with retrieval-augmented answers grounded only in your own notes, with clickable citations, offline-first sync, and live subscription billing. Designed and built solo in about 12 weeks."
+tags: ["RAG", "pgvector", "Supabase", "Expo", "TypeScript"]
+externalUrl: "https://novomemo.com"
+externalLabel: "Visit novomemo.com"
+---
+
+**NovoMemo** is a notes app you can ask questions. You write notes in markdown,
+then ask things like "what did I decide about the pricing tiers?" NovoMemo
+answers **only from what you wrote** and shows you exactly where it found the
+answer. If your notes don't contain the answer, it says so instead of making one
+up.
+
+I designed and built it on my own under my studio, Imaginovo. It's live on the
+web with subscription billing, and the iOS and Android apps are on the way.
+
+![NovoMemo landing page: "Your notes, with answers."](/images/projects/novomemo.jpg)
+
+## The problem
+
+General-purpose AI chat is confident about everything, including things it
+doesn't know. For personal notes that's the wrong default: if I ask about
+*my* meeting, I want *my* notes or nothing. That set the requirements:
+
+- Answers must come only from the user's notes, never from the model's general knowledge.
+- Every answer must point back to its source passage.
+- Asking must feel instant, and writing must work offline.
+- It has to be a real product, with sign-in, billing, and usage limits, not a demo.
+
+## How retrieval works
+
+1. **Chunking.** Each note is split at its markdown headings, and each chunk
+   keeps the headings above it as context. Notes without headings fall back to
+   roughly 1,000-character chunks with 200 characters of overlap, breaking on
+   line ends where possible.
+2. **Embedding.** Saving a note triggers an edge function that embeds its chunks
+   with OpenAI `text-embedding-3-small`. Out-of-date chunks are re-embedded when a
+   question comes in, so answers never use stale text.
+3. **Search.** The question is embedded and matched by cosine similarity in
+   Postgres with **pgvector** (HNSW index). No separate vector database is
+   needed.
+4. **Relevance gate.** If no chunk clears the similarity threshold, NovoMemo
+   answers "not found" instead of handing the model nothing and hoping. This
+   is the single most important design decision in the app.
+5. **Answer with citations.** The model answers from the retrieved chunks only,
+   streams the response back, and cites the chunks it used. Tapping a citation
+   opens the note and highlights the passage.
+
+Answers are routed through OpenRouter to the cheapest provider with a
+no-data-retention policy, with a fallback model when it isn't configured.
+
+## Editing by chat
+
+You can also ask NovoMemo to create or change notes. Proposed edits apply
+immediately with an Undo, and deletions always require confirmation. The step
+that classifies these requests never sees note text, which keeps the
+privacy boundary simple.
+
+## Architecture
+
+- **App:** Expo (React Native + React Native Web) and TypeScript, with a
+  CodeMirror 6 live-preview markdown editor.
+- **Offline-first:** a local SQLite cache with a queue of pending changes that
+  syncs to the server (last write wins).
+- **Backend:** Supabase (Postgres, Auth with Google and Sign in with Apple,
+  Deno edge functions). Business logic is shared between app and server and
+  covered by Vitest tests.
+- **Billing:** RevenueCat (Apple in-app purchase and web checkout, with Stripe
+  processing cards). Webhooks are signature-checked and weekly usage limits
+  are enforced on the server, not the client.
+- **Hosting:** Cloudflare Pages for the web app and a Cloudflare Worker for the
+  landing page.
+
+## How I built it
+
+I built NovoMemo in about 12 weeks of part-time work, **using AI coding agents
+(Claude Code) for most of the implementation**. My job was the part agents
+can't do on their own: deciding what to build and keeping it coherent. That
+meant a domain glossary, nine architecture decision records, written specs and
+tickets for every feature, and a test-first loop so each change was checked
+before it landed.
+
+The lesson I'd bring to any team: AI makes writing code cheap, so the
+leverage moves to clear requirements, explicit decisions, and good tests.
+
+## Status
+
+NovoMemo is live on the web at [novomemo.com](https://novomemo.com) with free
+and premium plans. It launched recently, so I don't have usage numbers to
+share yet.

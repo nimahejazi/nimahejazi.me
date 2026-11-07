@@ -11,8 +11,10 @@ const year = new Date().getFullYear();
     <p>
       &copy; {year} · {profile.name}
     </p>
-    <p>
-      Crafted with care · by {profile.wordmark}
-    </p>
+    <a
+      href={`mailto:${profile.contact.email}`}
+      class="underline decoration-cream-400 underline-offset-4 hover:text-cream-900 dark:decoration-white/30 dark:hover:text-white"
+      >{profile.contact.email}</a
+    >
   </div>
 </footer>

@@ -73,7 +73,7 @@ export interface Profile {
 
 export const profile: Profile = {
   name: "Nima Hejazi",
-  wordmark: "nima.hejazi",
+  wordmark: "Nima Hejazi",
   availableForWork: true,
   location: "Chicago, IL",
   role: "Solutions Engineer · AI, Automation & Data",
